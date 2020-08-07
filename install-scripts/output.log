@@ -1,0 +1,1440 @@
+Setting up a new droplet with mysql 8, tomcat9 and nginx
+enter ip address of droplet:
+Installing Dependencies...
+
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Firewall is active and enabled on system startup
+########################################################################################
+############################ Install and setup          ################################
+########################################################################################
+############################      Install Mysql web server      ########################
+Get:1 http://security.ubuntu.com/ubuntu disco-security InRelease [97.5 kB]
+Hit:2 http://mirrors.digitalocean.com/ubuntu disco InRelease
+Get:3 http://mirrors.digitalocean.com/ubuntu disco-updates InRelease [97.5 kB]
+Get:4 http://mirrors.digitalocean.com/ubuntu disco-backports InRelease [88.8 kB]
+Get:5 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 Packages [9065 kB]
+Get:6 http://security.ubuntu.com/ubuntu disco-security/main amd64 Packages [181 kB]
+Get:7 http://security.ubuntu.com/ubuntu disco-security/main Translation-en [65.9 kB]
+Get:8 http://security.ubuntu.com/ubuntu disco-security/main amd64 c-n-f Metadata [2196 B]
+Get:9 http://security.ubuntu.com/ubuntu disco-security/restricted amd64 Packages [3020 B]
+Get:10 http://security.ubuntu.com/ubuntu disco-security/restricted Translation-en [844 B]
+Get:11 http://security.ubuntu.com/ubuntu disco-security/universe amd64 Packages [232 kB]
+Get:12 http://mirrors.digitalocean.com/ubuntu disco/universe Translation-en [5251 kB]
+Get:13 http://security.ubuntu.com/ubuntu disco-security/universe Translation-en [63.0 kB]
+Get:14 http://security.ubuntu.com/ubuntu disco-security/universe amd64 c-n-f Metadata [1260 B]
+Get:15 http://security.ubuntu.com/ubuntu disco-security/multiverse amd64 Packages [1172 B]
+Get:16 http://security.ubuntu.com/ubuntu disco-security/multiverse Translation-en [632 B]
+Get:17 http://security.ubuntu.com/ubuntu disco-security/multiverse amd64 c-n-f Metadata [116 B]
+Get:18 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 c-n-f Metadata [277 kB]
+Get:19 http://mirrors.digitalocean.com/ubuntu disco/multiverse amd64 Packages [157 kB]
+Get:20 http://mirrors.digitalocean.com/ubuntu disco/multiverse Translation-en [112 kB]
+Get:21 http://mirrors.digitalocean.com/ubuntu disco/multiverse amd64 c-n-f Metadata [9348 B]
+Get:22 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 Packages [246 kB]
+Get:23 http://mirrors.digitalocean.com/ubuntu disco-updates/main Translation-en [94.6 kB]
+Get:24 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 c-n-f Metadata [2996 B]
+Get:25 http://mirrors.digitalocean.com/ubuntu disco-updates/restricted amd64 Packages [3416 B]
+Get:26 http://mirrors.digitalocean.com/ubuntu disco-updates/restricted Translation-en [884 B]
+Get:27 http://mirrors.digitalocean.com/ubuntu disco-updates/universe amd64 Packages [282 kB]
+Get:28 http://mirrors.digitalocean.com/ubuntu disco-updates/universe Translation-en [92.0 kB]
+Get:29 http://mirrors.digitalocean.com/ubuntu disco-updates/universe amd64 c-n-f Metadata [1780 B]
+Get:30 http://mirrors.digitalocean.com/ubuntu disco-updates/multiverse amd64 Packages [1172 B]
+Get:31 http://mirrors.digitalocean.com/ubuntu disco-updates/multiverse Translation-en [632 B]
+Get:32 http://mirrors.digitalocean.com/ubuntu disco-updates/multiverse amd64 c-n-f Metadata [116 B]
+Get:33 http://mirrors.digitalocean.com/ubuntu disco-backports/main amd64 Packages [1220 B]
+Get:34 http://mirrors.digitalocean.com/ubuntu disco-backports/main Translation-en [684 B]
+Get:35 http://mirrors.digitalocean.com/ubuntu disco-backports/main amd64 c-n-f Metadata [528 B]
+Get:36 http://mirrors.digitalocean.com/ubuntu disco-backports/restricted amd64 c-n-f Metadata [116 B]
+Get:37 http://mirrors.digitalocean.com/ubuntu disco-backports/universe amd64 Packages [3144 B]
+Get:38 http://mirrors.digitalocean.com/ubuntu disco-backports/universe Translation-en [1368 B]
+Get:39 http://mirrors.digitalocean.com/ubuntu disco-backports/universe amd64 c-n-f Metadata [188 B]
+Get:40 http://mirrors.digitalocean.com/ubuntu disco-backports/multiverse amd64 c-n-f Metadata [116 B]
+Fetched 16.4 MB in 5s (3166 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  debconf debconf-i18n python3-debconf
+Suggested packages:
+  debconf-doc libterm-readline-gnu-perl libgtk3-perl libnet-ldap-perl
+  debconf-kde-helper
+The following NEW packages will be installed:
+  debconf-utils
+The following packages will be upgraded:
+  debconf debconf-i18n python3-debconf
+3 upgraded, 1 newly installed, 0 to remove and 89 not upgraded.
+Need to get 389 kB of archives.
+After this operation, 108 kB of additional disk space will be used.
+Get:1 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 python3-debconf all 1.5.71ubuntu1 [4064 B]
+Get:2 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 debconf-i18n all 1.5.71ubuntu1 [206 kB]
+Get:3 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 debconf all 1.5.71ubuntu1 [122 kB]
+Get:4 http://mirrors.digitalocean.com/ubuntu disco-updates/universe amd64 debconf-utils all 1.5.71ubuntu1 [57.2 kB]
+Fetched 389 kB in 0s (2414 kB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 60171 files and directories currently installed.)
+Preparing to unpack .../python3-debconf_1.5.71ubuntu1_all.deb ...
+Unpacking python3-debconf (1.5.71ubuntu1) over (1.5.71) ...
+Preparing to unpack .../debconf-i18n_1.5.71ubuntu1_all.deb ...
+Unpacking debconf-i18n (1.5.71ubuntu1) over (1.5.71) ...
+Preparing to unpack .../debconf_1.5.71ubuntu1_all.deb ...
+Unpacking debconf (1.5.71ubuntu1) over (1.5.71) ...
+Setting up debconf (1.5.71ubuntu1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+Selecting previously unselected package debconf-utils.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 60171 files and directories currently installed.)
+Preparing to unpack .../debconf-utils_1.5.71ubuntu1_all.deb ...
+Unpacking debconf-utils (1.5.71ubuntu1) ...
+Setting up python3-debconf (1.5.71ubuntu1) ...
+Setting up debconf-i18n (1.5.71ubuntu1) ...
+Setting up debconf-utils (1.5.71ubuntu1) ...
+Processing triggers for man-db (2.8.5-2) ...
+Selecting previously unselected package mysql-apt-config.
+(Reading database ... 60203 files and directories currently installed.)
+Preparing to unpack mysql-apt-config_0.8.13-1_all.deb ...
+Unpacking mysql-apt-config (0.8.13-1) ...
+Setting up mysql-apt-config (0.8.13-1) ...
+Get:1 http://repo.mysql.com/apt/ubuntu disco InRelease [19.3 kB]
+Hit:2 http://security.ubuntu.com/ubuntu disco-security InRelease
+Hit:3 http://mirrors.digitalocean.com/ubuntu disco InRelease
+Hit:4 http://mirrors.digitalocean.com/ubuntu disco-updates InRelease
+Hit:5 http://mirrors.digitalocean.com/ubuntu disco-backports InRelease
+Get:6 http://repo.mysql.com/apt/ubuntu disco/mysql-8.0 Sources [964 B]
+Get:7 http://repo.mysql.com/apt/ubuntu disco/mysql-apt-config amd64 Packages [564 B]
+Get:8 http://repo.mysql.com/apt/ubuntu disco/mysql-8.0 amd64 Packages [7018 B]
+Get:9 http://repo.mysql.com/apt/ubuntu disco/mysql-tools amd64 Packages [4186 B]
+Fetched 32.0 kB in 1s (49.9 kB/s)
+Reading package lists...
+Installing MySQL 8...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libmecab2 mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-client
+  mysql-common mysql-community-client mysql-community-client-core
+  mysql-community-server mysql-community-server-core
+The following NEW packages will be installed:
+  libmecab2 mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-client
+  mysql-common mysql-community-client mysql-community-client-core
+  mysql-community-server mysql-community-server-core mysql-server
+0 upgraded, 11 newly installed, 0 to remove and 89 not upgraded.
+Need to get 30.1 MB of archives.
+After this operation, 295 MB of additional disk space will be used.
+Get:1 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libmecab2 amd64 0.996-6 [257 kB]
+Get:2 http://repo.mysql.com/apt/ubuntu disco/mysql-8.0 amd64 mysql-common amd64 8.0.17-1ubuntu19.04 [84.6 kB]
+Get:3 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 mecab-utils amd64 0.996-6 [4856 B]
+Get:4 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 mecab-ipadic all 2.7.0-20070801+main-2 [6713 kB]
+Get:5 http://repo.mysql.com/apt/ubuntu disco/mysql-8.0 amd64 mysql-community-client-core amd64 8.0.17-1ubuntu19.04 [1593 kB]
+Get:6 http://repo.mysql.com/apt/ubuntu disco/mysql-8.0 amd64 mysql-community-client amd64 8.0.17-1ubuntu19.04 [2681 kB]
+Get:7 http://repo.mysql.com/apt/ubuntu disco/mysql-8.0 amd64 mysql-client amd64 8.0.17-1ubuntu19.04 [81.2 kB]
+Get:8 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 mecab-ipadic-utf8 all 2.7.0-20070801+main-2 [4384 B]
+Get:9 http://repo.mysql.com/apt/ubuntu disco/mysql-8.0 amd64 mysql-community-server-core amd64 8.0.17-1ubuntu19.04 [18.5 MB]
+Get:10 http://repo.mysql.com/apt/ubuntu disco/mysql-8.0 amd64 mysql-community-server amd64 8.0.17-1ubuntu19.04 [92.1 kB]
+Get:11 http://repo.mysql.com/apt/ubuntu disco/mysql-8.0 amd64 mysql-server amd64 8.0.17-1ubuntu19.04 [81.2 kB]
+Preconfiguring packages ...
+Fetched 30.1 MB in 2s (19.7 MB/s)
+Selecting previously unselected package mysql-common.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 60208 files and directories currently installed.)
+Preparing to unpack .../00-mysql-common_8.0.17-1ubuntu19.04_amd64.deb ...
+Unpacking mysql-common (8.0.17-1ubuntu19.04) ...
+Selecting previously unselected package mysql-community-client-core.
+Preparing to unpack .../01-mysql-community-client-core_8.0.17-1ubuntu19.04_amd64.deb ...
+Unpacking mysql-community-client-core (8.0.17-1ubuntu19.04) ...
+Selecting previously unselected package mysql-community-client.
+Preparing to unpack .../02-mysql-community-client_8.0.17-1ubuntu19.04_amd64.deb ...
+Unpacking mysql-community-client (8.0.17-1ubuntu19.04) ...
+Selecting previously unselected package mysql-client.
+Preparing to unpack .../03-mysql-client_8.0.17-1ubuntu19.04_amd64.deb ...
+Unpacking mysql-client (8.0.17-1ubuntu19.04) ...
+Selecting previously unselected package libmecab2:amd64.
+Preparing to unpack .../04-libmecab2_0.996-6_amd64.deb ...
+Unpacking libmecab2:amd64 (0.996-6) ...
+Selecting previously unselected package mysql-community-server-core.
+Preparing to unpack .../05-mysql-community-server-core_8.0.17-1ubuntu19.04_amd64.deb ...
+Unpacking mysql-community-server-core (8.0.17-1ubuntu19.04) ...
+Selecting previously unselected package mysql-community-server.
+Preparing to unpack .../06-mysql-community-server_8.0.17-1ubuntu19.04_amd64.deb ...
+Unpacking mysql-community-server (8.0.17-1ubuntu19.04) ...
+Selecting previously unselected package mecab-utils.
+Preparing to unpack .../07-mecab-utils_0.996-6_amd64.deb ...
+Unpacking mecab-utils (0.996-6) ...
+Selecting previously unselected package mecab-ipadic.
+Preparing to unpack .../08-mecab-ipadic_2.7.0-20070801+main-2_all.deb ...
+Unpacking mecab-ipadic (2.7.0-20070801+main-2) ...
+Selecting previously unselected package mecab-ipadic-utf8.
+Preparing to unpack .../09-mecab-ipadic-utf8_2.7.0-20070801+main-2_all.deb ...
+Unpacking mecab-ipadic-utf8 (2.7.0-20070801+main-2) ...
+Selecting previously unselected package mysql-server.
+Preparing to unpack .../10-mysql-server_8.0.17-1ubuntu19.04_amd64.deb ...
+Unpacking mysql-server (8.0.17-1ubuntu19.04) ...
+Setting up libmecab2:amd64 (0.996-6) ...
+Setting up mysql-common (8.0.17-1ubuntu19.04) ...
+update-alternatives: using /etc/mysql/my.cnf.fallback to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Setting up mysql-community-client-core (8.0.17-1ubuntu19.04) ...
+Setting up mysql-community-server-core (8.0.17-1ubuntu19.04) ...
+Setting up mecab-utils (0.996-6) ...
+Setting up mysql-community-client (8.0.17-1ubuntu19.04) ...
+Setting up mysql-client (8.0.17-1ubuntu19.04) ...
+Setting up mecab-ipadic (2.7.0-20070801+main-2) ...
+Compiling IPA dictionary for Mecab.  This takes long time...
+reading /usr/share/mecab/dic/ipadic/unk.def ... 40
+emitting double-array:   9% |###                                        | emitting double-array:  18% |#######                                    | emitting double-array:  27% |###########                                | emitting double-array:  36% |###############                            | emitting double-array:  45% |###################                        | emitting double-array:  54% |#######################                    | emitting double-array:  63% |###########################                | emitting double-array:  72% |###############################            | emitting double-array:  81% |###################################        | emitting double-array:  90% |#######################################    | emitting double-array: 100% |###########################################| 
+/usr/share/mecab/dic/ipadic/model.def is not found. skipped.
+reading /usr/share/mecab/dic/ipadic/Postp.csv ... 146
+reading /usr/share/mecab/dic/ipadic/Noun.number.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Noun.csv ... 60477
+reading /usr/share/mecab/dic/ipadic/Noun.place.csv ... 72999
+reading /usr/share/mecab/dic/ipadic/Suffix.csv ... 1393
+reading /usr/share/mecab/dic/ipadic/Adnominal.csv ... 135
+reading /usr/share/mecab/dic/ipadic/Prefix.csv ... 221
+reading /usr/share/mecab/dic/ipadic/Noun.demonst.csv ... 120
+reading /usr/share/mecab/dic/ipadic/Noun.adjv.csv ... 3328
+reading /usr/share/mecab/dic/ipadic/Postp-col.csv ... 91
+reading /usr/share/mecab/dic/ipadic/Noun.nai.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Verb.csv ... 130750
+reading /usr/share/mecab/dic/ipadic/Noun.others.csv ... 151
+reading /usr/share/mecab/dic/ipadic/Adverb.csv ... 3032
+reading /usr/share/mecab/dic/ipadic/Adj.csv ... 27210
+reading /usr/share/mecab/dic/ipadic/Interjection.csv ... 252
+reading /usr/share/mecab/dic/ipadic/Noun.name.csv ... 34202
+reading /usr/share/mecab/dic/ipadic/Noun.proper.csv ... 27327
+reading /usr/share/mecab/dic/ipadic/Noun.org.csv ... 16668
+reading /usr/share/mecab/dic/ipadic/Filler.csv ... 19
+reading /usr/share/mecab/dic/ipadic/Noun.adverbal.csv ... 795
+reading /usr/share/mecab/dic/ipadic/Noun.verbal.csv ... 12146
+reading /usr/share/mecab/dic/ipadic/Auxil.csv ... 199
+reading /usr/share/mecab/dic/ipadic/Others.csv ... 2
+reading /usr/share/mecab/dic/ipadic/Symbol.csv ... 208
+reading /usr/share/mecab/dic/ipadic/Conjunction.csv ... 171
+emitting double-array:   0% |                                           | emitting double-array:   1% |                                           | emitting double-array:   2% |                                           | emitting double-array:   3% |#                                          | emitting double-array:   4% |#                                          | emitting double-array:   5% |##                                         | emitting double-array:   6% |##                                         | emitting double-array:   7% |###                                        | emitting double-array:   8% |###                                        | emitting double-array:   9% |###                                        | emitting double-array:  10% |####                                       | emitting double-array:  11% |####                                       | emitting double-array:  12% |#####                                      | emitting double-array:  13% |#####                                      | emitting double-array:  14% |######                                     | emitting double-array:  15% |######                                     | emitting double-array:  16% |######                                     | emitting double-array:  17% |#######                                    | emitting double-array:  18% |#######                                    | emitting double-array:  19% |########                                   | emitting double-array:  20% |########                                   | emitting double-array:  21% |#########                                  | emitting double-array:  22% |#########                                  | emitting double-array:  23% |#########                                  | emitting double-array:  24% |##########                                 | emitting double-array:  25% |##########                                 | emitting double-array:  26% |###########                                | emitting double-array:  27% |###########                                | emitting double-array:  28% |############                               | emitting double-array:  29% |############                               | emitting double-array:  30% |############                               | emitting double-array:  31% |#############                              | emitting double-array:  32% |#############                              | emitting double-array:  33% |##############                             | emitting double-array:  34% |##############                             | emitting double-array:  35% |###############                            | emitting double-array:  36% |###############                            | emitting double-array:  37% |###############                            | emitting double-array:  38% |################                           | emitting double-array:  39% |################                           | emitting double-array:  40% |#################                          | emitting double-array:  41% |#################                          | emitting double-array:  42% |##################                         | emitting double-array:  43% |##################                         | emitting double-array:  44% |##################                         | emitting double-array:  45% |###################                        | emitting double-array:  46% |###################                        | emitting double-array:  47% |####################                       | emitting double-array:  48% |####################                       | emitting double-array:  49% |#####################                      | emitting double-array:  50% |#####################                      | emitting double-array:  51% |#####################                      | emitting double-array:  52% |######################                     | emitting double-array:  53% |######################                     | emitting double-array:  54% |#######################                    | emitting double-array:  55% |#######################                    | emitting double-array:  56% |########################                   | emitting double-array:  57% |########################                   | emitting double-array:  58% |########################                   | emitting double-array:  59% |#########################                  | emitting double-array:  60% |#########################                  | emitting double-array:  61% |##########################                 | emitting double-array:  62% |##########################                 | emitting double-array:  63% |###########################                | emitting double-array:  64% |###########################                | emitting double-array:  65% |###########################                | emitting double-array:  66% |############################               | emitting double-array:  67% |############################               | emitting double-array:  68% |#############################              | emitting double-array:  69% |#############################              | emitting double-array:  70% |##############################             | emitting double-array:  71% |##############################             | emitting double-array:  72% |##############################             | emitting double-array:  73% |###############################            | emitting double-array:  74% |###############################            | emitting double-array:  75% |################################           | emitting double-array:  76% |################################           | emitting double-array:  77% |#################################          | emitting double-array:  78% |#################################          | emitting double-array:  79% |#################################          | emitting double-array:  80% |##################################         | emitting double-array:  81% |##################################         | emitting double-array:  82% |###################################        | emitting double-array:  83% |###################################        | emitting double-array:  84% |####################################       | emitting double-array:  85% |####################################       | emitting double-array:  86% |####################################       | emitting double-array:  87% |#####################################      | emitting double-array:  88% |#####################################      | emitting double-array:  89% |######################################     | emitting double-array:  90% |######################################     | emitting double-array:  91% |#######################################    | emitting double-array:  92% |#######################################    | emitting double-array:  93% |#######################################    | emitting double-array:  94% |########################################   | emitting double-array:  95% |########################################   | emitting double-array:  96% |#########################################  | emitting double-array:  97% |#########################################  | emitting double-array:  98% |########################################## | emitting double-array:  99% |########################################## | emitting double-array: 100% |###########################################| 
+reading /usr/share/mecab/dic/ipadic/matrix.def ... 1316x1316
+emitting matrix      :   0% |                                           | emitting matrix      :   1% |                                           | emitting matrix      :   2% |                                           | emitting matrix      :   3% |#                                          | emitting matrix      :   4% |#                                          | emitting matrix      :   5% |##                                         | emitting matrix      :   6% |##                                         | emitting matrix      :   7% |###                                        | emitting matrix      :   8% |###                                        | emitting matrix      :   9% |###                                        | emitting matrix      :  10% |####                                       | emitting matrix      :  11% |####                                       | emitting matrix      :  12% |#####                                      | emitting matrix      :  13% |#####                                      | emitting matrix      :  14% |######                                     | emitting matrix      :  15% |######                                     | emitting matrix      :  16% |######                                     | emitting matrix      :  17% |#######                                    | emitting matrix      :  18% |#######                                    | emitting matrix      :  19% |########                                   | emitting matrix      :  20% |########                                   | emitting matrix      :  21% |#########                                  | emitting matrix      :  22% |#########                                  | emitting matrix      :  23% |#########                                  | emitting matrix      :  24% |##########                                 | emitting matrix      :  25% |##########                                 | emitting matrix      :  26% |###########                                | emitting matrix      :  27% |###########                                | emitting matrix      :  28% |############                               | emitting matrix      :  29% |############                               | emitting matrix      :  30% |############                               | emitting matrix      :  31% |#############                              | emitting matrix      :  32% |#############                              | emitting matrix      :  33% |##############                             | emitting matrix      :  34% |##############                             | emitting matrix      :  35% |###############                            | emitting matrix      :  36% |###############                            | emitting matrix      :  37% |###############                            | emitting matrix      :  38% |################                           | emitting matrix      :  39% |################                           | emitting matrix      :  40% |#################                          | emitting matrix      :  41% |#################                          | emitting matrix      :  42% |##################                         | emitting matrix      :  43% |##################                         | emitting matrix      :  44% |##################                         | emitting matrix      :  45% |###################                        | emitting matrix      :  46% |###################                        | emitting matrix      :  47% |####################                       | emitting matrix      :  48% |####################                       | emitting matrix      :  49% |#####################                      | emitting matrix      :  50% |#####################                      | emitting matrix      :  51% |#####################                      | emitting matrix      :  52% |######################                     | emitting matrix      :  53% |######################                     | emitting matrix      :  54% |#######################                    | emitting matrix      :  55% |#######################                    | emitting matrix      :  56% |########################                   | emitting matrix      :  57% |########################                   | emitting matrix      :  58% |########################                   | emitting matrix      :  59% |#########################                  | emitting matrix      :  60% |#########################                  | emitting matrix      :  61% |##########################                 | emitting matrix      :  62% |##########################                 | emitting matrix      :  63% |###########################                | emitting matrix      :  64% |###########################                | emitting matrix      :  65% |###########################                | emitting matrix      :  66% |############################               | emitting matrix      :  67% |############################               | emitting matrix      :  68% |#############################              | emitting matrix      :  69% |#############################              | emitting matrix      :  70% |##############################             | emitting matrix      :  71% |##############################             | emitting matrix      :  72% |##############################             | emitting matrix      :  73% |###############################            | emitting matrix      :  74% |###############################            | emitting matrix      :  75% |################################           | emitting matrix      :  76% |################################           | emitting matrix      :  77% |#################################          | emitting matrix      :  78% |#################################          | emitting matrix      :  79% |#################################          | emitting matrix      :  80% |##################################         | emitting matrix      :  81% |##################################         | emitting matrix      :  82% |###################################        | emitting matrix      :  83% |###################################        | emitting matrix      :  84% |####################################       | emitting matrix      :  85% |####################################       | emitting matrix      :  86% |####################################       | emitting matrix      :  87% |#####################################      | emitting matrix      :  88% |#####################################      | emitting matrix      :  89% |######################################     | emitting matrix      :  90% |######################################     | emitting matrix      :  91% |#######################################    | emitting matrix      :  92% |#######################################    | emitting matrix      :  93% |#######################################    | emitting matrix      :  94% |########################################   | emitting matrix      :  95% |########################################   | emitting matrix      :  96% |#########################################  | emitting matrix      :  97% |#########################################  | emitting matrix      :  98% |########################################## | emitting matrix      :  99% |########################################## | emitting matrix      : 100% |###########################################| 
+
+done!
+update-alternatives: using /var/lib/mecab/dic/ipadic to provide /var/lib/mecab/dic/debian (mecab-dictionary) in auto mode
+Setting up mysql-community-server (8.0.17-1ubuntu19.04) ...
+update-alternatives: using /etc/mysql/mysql.cnf to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Created symlink /etc/systemd/system/multi-user.target.wants/mysql.service → /lib/systemd/system/mysql.service.
+Setting up mecab-ipadic-utf8 (2.7.0-20070801+main-2) ...
+Compiling IPA dictionary for Mecab.  This takes long time...
+reading /usr/share/mecab/dic/ipadic/unk.def ... 40
+emitting double-array:   9% |###                                        | emitting double-array:  18% |#######                                    | emitting double-array:  27% |###########                                | emitting double-array:  36% |###############                            | emitting double-array:  45% |###################                        | emitting double-array:  54% |#######################                    | emitting double-array:  63% |###########################                | emitting double-array:  72% |###############################            | emitting double-array:  81% |###################################        | emitting double-array:  90% |#######################################    | emitting double-array: 100% |###########################################| 
+/usr/share/mecab/dic/ipadic/model.def is not found. skipped.
+reading /usr/share/mecab/dic/ipadic/Postp.csv ... 146
+reading /usr/share/mecab/dic/ipadic/Noun.number.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Noun.csv ... 60477
+reading /usr/share/mecab/dic/ipadic/Noun.place.csv ... 72999
+reading /usr/share/mecab/dic/ipadic/Suffix.csv ... 1393
+reading /usr/share/mecab/dic/ipadic/Adnominal.csv ... 135
+reading /usr/share/mecab/dic/ipadic/Prefix.csv ... 221
+reading /usr/share/mecab/dic/ipadic/Noun.demonst.csv ... 120
+reading /usr/share/mecab/dic/ipadic/Noun.adjv.csv ... 3328
+reading /usr/share/mecab/dic/ipadic/Postp-col.csv ... 91
+reading /usr/share/mecab/dic/ipadic/Noun.nai.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Verb.csv ... 130750
+reading /usr/share/mecab/dic/ipadic/Noun.others.csv ... 151
+reading /usr/share/mecab/dic/ipadic/Adverb.csv ... 3032
+reading /usr/share/mecab/dic/ipadic/Adj.csv ... 27210
+reading /usr/share/mecab/dic/ipadic/Interjection.csv ... 252
+reading /usr/share/mecab/dic/ipadic/Noun.name.csv ... 34202
+reading /usr/share/mecab/dic/ipadic/Noun.proper.csv ... 27327
+reading /usr/share/mecab/dic/ipadic/Noun.org.csv ... 16668
+reading /usr/share/mecab/dic/ipadic/Filler.csv ... 19
+reading /usr/share/mecab/dic/ipadic/Noun.adverbal.csv ... 795
+reading /usr/share/mecab/dic/ipadic/Noun.verbal.csv ... 12146
+reading /usr/share/mecab/dic/ipadic/Auxil.csv ... 199
+reading /usr/share/mecab/dic/ipadic/Others.csv ... 2
+reading /usr/share/mecab/dic/ipadic/Symbol.csv ... 208
+reading /usr/share/mecab/dic/ipadic/Conjunction.csv ... 171
+emitting double-array:   0% |                                           | emitting double-array:   1% |                                           | emitting double-array:   2% |                                           | emitting double-array:   3% |#                                          | emitting double-array:   4% |#                                          | emitting double-array:   5% |##                                         | emitting double-array:   6% |##                                         | emitting double-array:   7% |###                                        | emitting double-array:   8% |###                                        | emitting double-array:   9% |###                                        | emitting double-array:  10% |####                                       | emitting double-array:  11% |####                                       | emitting double-array:  12% |#####                                      | emitting double-array:  13% |#####                                      | emitting double-array:  14% |######                                     | emitting double-array:  15% |######                                     | emitting double-array:  16% |######                                     | emitting double-array:  17% |#######                                    | emitting double-array:  18% |#######                                    | emitting double-array:  19% |########                                   | emitting double-array:  20% |########                                   | emitting double-array:  21% |#########                                  | emitting double-array:  22% |#########                                  | emitting double-array:  23% |#########                                  | emitting double-array:  24% |##########                                 | emitting double-array:  25% |##########                                 | emitting double-array:  26% |###########                                | emitting double-array:  27% |###########                                | emitting double-array:  28% |############                               | emitting double-array:  29% |############                               | emitting double-array:  30% |############                               | emitting double-array:  31% |#############                              | emitting double-array:  32% |#############                              | emitting double-array:  33% |##############                             | emitting double-array:  34% |##############                             | emitting double-array:  35% |###############                            | emitting double-array:  36% |###############                            | emitting double-array:  37% |###############                            | emitting double-array:  38% |################                           | emitting double-array:  39% |################                           | emitting double-array:  40% |#################                          | emitting double-array:  41% |#################                          | emitting double-array:  42% |##################                         | emitting double-array:  43% |##################                         | emitting double-array:  44% |##################                         | emitting double-array:  45% |###################                        | emitting double-array:  46% |###################                        | emitting double-array:  47% |####################                       | emitting double-array:  48% |####################                       | emitting double-array:  49% |#####################                      | emitting double-array:  50% |#####################                      | emitting double-array:  51% |#####################                      | emitting double-array:  52% |######################                     | emitting double-array:  53% |######################                     | emitting double-array:  54% |#######################                    | emitting double-array:  55% |#######################                    | emitting double-array:  56% |########################                   | emitting double-array:  57% |########################                   | emitting double-array:  58% |########################                   | emitting double-array:  59% |#########################                  | emitting double-array:  60% |#########################                  | emitting double-array:  61% |##########################                 | emitting double-array:  62% |##########################                 | emitting double-array:  63% |###########################                | emitting double-array:  64% |###########################                | emitting double-array:  65% |###########################                | emitting double-array:  66% |############################               | emitting double-array:  67% |############################               | emitting double-array:  68% |#############################              | emitting double-array:  69% |#############################              | emitting double-array:  70% |##############################             | emitting double-array:  71% |##############################             | emitting double-array:  72% |##############################             | emitting double-array:  73% |###############################            | emitting double-array:  74% |###############################            | emitting double-array:  75% |################################           | emitting double-array:  76% |################################           | emitting double-array:  77% |#################################          | emitting double-array:  78% |#################################          | emitting double-array:  79% |#################################          | emitting double-array:  80% |##################################         | emitting double-array:  81% |##################################         | emitting double-array:  82% |###################################        | emitting double-array:  83% |###################################        | emitting double-array:  84% |####################################       | emitting double-array:  85% |####################################       | emitting double-array:  86% |####################################       | emitting double-array:  87% |#####################################      | emitting double-array:  88% |#####################################      | emitting double-array:  89% |######################################     | emitting double-array:  90% |######################################     | emitting double-array:  91% |#######################################    | emitting double-array:  92% |#######################################    | emitting double-array:  93% |#######################################    | emitting double-array:  94% |########################################   | emitting double-array:  95% |########################################   | emitting double-array:  96% |#########################################  | emitting double-array:  97% |#########################################  | emitting double-array:  98% |########################################## | emitting double-array:  99% |########################################## | emitting double-array: 100% |###########################################| 
+reading /usr/share/mecab/dic/ipadic/matrix.def ... 1316x1316
+emitting matrix      :   0% |                                           | emitting matrix      :   1% |                                           | emitting matrix      :   2% |                                           | emitting matrix      :   3% |#                                          | emitting matrix      :   4% |#                                          | emitting matrix      :   5% |##                                         | emitting matrix      :   6% |##                                         | emitting matrix      :   7% |###                                        | emitting matrix      :   8% |###                                        | emitting matrix      :   9% |###                                        | emitting matrix      :  10% |####                                       | emitting matrix      :  11% |####                                       | emitting matrix      :  12% |#####                                      | emitting matrix      :  13% |#####                                      | emitting matrix      :  14% |######                                     | emitting matrix      :  15% |######                                     | emitting matrix      :  16% |######                                     | emitting matrix      :  17% |#######                                    | emitting matrix      :  18% |#######                                    | emitting matrix      :  19% |########                                   | emitting matrix      :  20% |########                                   | emitting matrix      :  21% |#########                                  | emitting matrix      :  22% |#########                                  | emitting matrix      :  23% |#########                                  | emitting matrix      :  24% |##########                                 | emitting matrix      :  25% |##########                                 | emitting matrix      :  26% |###########                                | emitting matrix      :  27% |###########                                | emitting matrix      :  28% |############                               | emitting matrix      :  29% |############                               | emitting matrix      :  30% |############                               | emitting matrix      :  31% |#############                              | emitting matrix      :  32% |#############                              | emitting matrix      :  33% |##############                             | emitting matrix      :  34% |##############                             | emitting matrix      :  35% |###############                            | emitting matrix      :  36% |###############                            | emitting matrix      :  37% |###############                            | emitting matrix      :  38% |################                           | emitting matrix      :  39% |################                           | emitting matrix      :  40% |#################                          | emitting matrix      :  41% |#################                          | emitting matrix      :  42% |##################                         | emitting matrix      :  43% |##################                         | emitting matrix      :  44% |##################                         | emitting matrix      :  45% |###################                        | emitting matrix      :  46% |###################                        | emitting matrix      :  47% |####################                       | emitting matrix      :  48% |####################                       | emitting matrix      :  49% |#####################                      | emitting matrix      :  50% |#####################                      | emitting matrix      :  51% |#####################                      | emitting matrix      :  52% |######################                     | emitting matrix      :  53% |######################                     | emitting matrix      :  54% |#######################                    | emitting matrix      :  55% |#######################                    | emitting matrix      :  56% |########################                   | emitting matrix      :  57% |########################                   | emitting matrix      :  58% |########################                   | emitting matrix      :  59% |#########################                  | emitting matrix      :  60% |#########################                  | emitting matrix      :  61% |##########################                 | emitting matrix      :  62% |##########################                 | emitting matrix      :  63% |###########################                | emitting matrix      :  64% |###########################                | emitting matrix      :  65% |###########################                | emitting matrix      :  66% |############################               | emitting matrix      :  67% |############################               | emitting matrix      :  68% |#############################              | emitting matrix      :  69% |#############################              | emitting matrix      :  70% |##############################             | emitting matrix      :  71% |##############################             | emitting matrix      :  72% |##############################             | emitting matrix      :  73% |###############################            | emitting matrix      :  74% |###############################            | emitting matrix      :  75% |################################           | emitting matrix      :  76% |################################           | emitting matrix      :  77% |#################################          | emitting matrix      :  78% |#################################          | emitting matrix      :  79% |#################################          | emitting matrix      :  80% |##################################         | emitting matrix      :  81% |##################################         | emitting matrix      :  82% |###################################        | emitting matrix      :  83% |###################################        | emitting matrix      :  84% |####################################       | emitting matrix      :  85% |####################################       | emitting matrix      :  86% |####################################       | emitting matrix      :  87% |#####################################      | emitting matrix      :  88% |#####################################      | emitting matrix      :  89% |######################################     | emitting matrix      :  90% |######################################     | emitting matrix      :  91% |#######################################    | emitting matrix      :  92% |#######################################    | emitting matrix      :  93% |#######################################    | emitting matrix      :  94% |########################################   | emitting matrix      :  95% |########################################   | emitting matrix      :  96% |#########################################  | emitting matrix      :  97% |#########################################  | emitting matrix      :  98% |########################################## | emitting matrix      :  99% |########################################## | emitting matrix      : 100% |###########################################| 
+
+done!
+update-alternatives: using /var/lib/mecab/dic/ipadic-utf8 to provide /var/lib/mecab/dic/debian (mecab-dictionary) in auto mode
+Setting up mysql-server (8.0.17-1ubuntu19.04) ...
+Processing triggers for man-db (2.8.5-2) ...
+Processing triggers for libc-bin (2.29-0ubuntu2) ...
+Restarting MySQL...
+Finished installing mysql
+############################      Install TOMCAT web server     ########################
+########################## Install Java     #########################
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  adwaita-icon-theme at-spi2-core ca-certificates-java fontconfig
+  fontconfig-config fonts-dejavu-core fonts-dejavu-extra gtk-update-icon-cache
+  hicolor-icon-theme humanity-icon-theme java-common libasound2
+  libasound2-data libasyncns0 libatk-bridge2.0-0 libatk-wrapper-java
+  libatk-wrapper-java-jni libatk1.0-0 libatk1.0-data libatspi2.0-0
+  libavahi-client3 libavahi-common-data libavahi-common3 libcairo2 libcroco3
+  libcups2 libdatrie1 libdrm-amdgpu1 libdrm-intel1 libdrm-nouveau2
+  libdrm-radeon1 libflac8 libfontconfig1 libfontenc1 libgail-common libgail18
+  libgdk-pixbuf2.0-0 libgdk-pixbuf2.0-bin libgdk-pixbuf2.0-common libgif7
+  libgl1 libgl1-mesa-dri libgl1-mesa-glx libglapi-mesa libglvnd0 libglx-mesa0
+  libglx0 libgraphite2-3 libgtk2.0-0 libgtk2.0-bin libgtk2.0-common
+  libharfbuzz0b libice6 libjbig0 libjpeg-turbo8 libjpeg8 liblcms2-2 libllvm8
+  libogg0 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0 libpciaccess0
+  libpcsclite1 libpixman-1-0 libpulse0 librsvg2-2 librsvg2-common
+  libsensors-config libsensors5 libsm6 libsndfile1 libthai-data libthai0
+  libtiff5 libvorbis0a libvorbisenc2 libwebp6 libx11-xcb1 libxaw7
+  libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-render0
+  libxcb-shape0 libxcb-shm0 libxcb-sync1 libxcomposite1 libxcursor1
+  libxdamage1 libxfixes3 libxft2 libxi6 libxinerama1 libxmu6 libxpm4
+  libxrandr2 libxrender1 libxshmfence1 libxt6 libxtst6 libxv1 libxxf86dga1
+  libxxf86vm1 openjdk-8-jre-headless ubuntu-mono x11-common x11-utils
+Suggested packages:
+  default-jre libasound2-plugins alsa-utils cups-common gvfs liblcms2-utils
+  pcscd pulseaudio librsvg2-bin lm-sensors icedtea-8-plugin libnss-mdns
+  fonts-ipafont-gothic fonts-ipafont-mincho fonts-wqy-microhei
+  fonts-wqy-zenhei fonts-indic mesa-utils
+The following NEW packages will be installed:
+  adwaita-icon-theme at-spi2-core ca-certificates-java fontconfig
+  fontconfig-config fonts-dejavu-core fonts-dejavu-extra gtk-update-icon-cache
+  hicolor-icon-theme humanity-icon-theme java-common libasound2
+  libasound2-data libasyncns0 libatk-bridge2.0-0 libatk-wrapper-java
+  libatk-wrapper-java-jni libatk1.0-0 libatk1.0-data libatspi2.0-0
+  libavahi-client3 libavahi-common-data libavahi-common3 libcairo2 libcroco3
+  libcups2 libdatrie1 libdrm-amdgpu1 libdrm-intel1 libdrm-nouveau2
+  libdrm-radeon1 libflac8 libfontconfig1 libfontenc1 libgail-common libgail18
+  libgdk-pixbuf2.0-0 libgdk-pixbuf2.0-bin libgdk-pixbuf2.0-common libgif7
+  libgl1 libgl1-mesa-dri libgl1-mesa-glx libglapi-mesa libglvnd0 libglx-mesa0
+  libglx0 libgraphite2-3 libgtk2.0-0 libgtk2.0-bin libgtk2.0-common
+  libharfbuzz0b libice6 libjbig0 libjpeg-turbo8 libjpeg8 liblcms2-2 libllvm8
+  libogg0 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0 libpciaccess0
+  libpcsclite1 libpixman-1-0 libpulse0 librsvg2-2 librsvg2-common
+  libsensors-config libsensors5 libsm6 libsndfile1 libthai-data libthai0
+  libtiff5 libvorbis0a libvorbisenc2 libwebp6 libx11-xcb1 libxaw7
+  libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-render0
+  libxcb-shape0 libxcb-shm0 libxcb-sync1 libxcomposite1 libxcursor1
+  libxdamage1 libxfixes3 libxft2 libxi6 libxinerama1 libxmu6 libxpm4
+  libxrandr2 libxrender1 libxshmfence1 libxt6 libxtst6 libxv1 libxxf86dga1
+  libxxf86vm1 openjdk-8-jre openjdk-8-jre-headless ubuntu-mono x11-common
+  x11-utils
+0 upgraded, 110 newly installed, 0 to remove and 89 not upgraded.
+Need to get 64.8 MB of archives.
+After this operation, 393 MB of additional disk space will be used.
+Get:1 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libogg0 amd64 1.3.2-1 [17.2 kB]
+Get:2 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxxf86dga1 amd64 2:1.1.4-1 [13.7 kB]
+Get:3 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxxf86vm1 amd64 1:1.1.4-1 [10.6 kB]
+Get:4 http://mirrors.digitalocean.com/ubuntu disco/main amd64 hicolor-icon-theme all 0.17-2 [9976 B]
+Get:5 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libjpeg-turbo8 amd64 2.0.1-0ubuntu2 [117 kB]
+Get:6 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libjpeg8 amd64 8c-2ubuntu8 [2194 B]
+Get:7 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libjbig0 amd64 2.1-3.1build1 [26.7 kB]
+Get:8 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libwebp6 amd64 0.6.1-2 [185 kB]
+Get:9 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libtiff5 amd64 4.0.10-4 [156 kB]
+Get:10 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgdk-pixbuf2.0-common all 2.38.1+dfsg-1 [6056 B]
+Get:11 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgdk-pixbuf2.0-0 amd64 2.38.1+dfsg-1 [170 kB]
+Get:12 http://mirrors.digitalocean.com/ubuntu disco/main amd64 gtk-update-icon-cache amd64 3.24.8-1ubuntu1 [27.8 kB]
+Get:13 http://mirrors.digitalocean.com/ubuntu disco/main amd64 fonts-dejavu-core all 2.37-1 [1041 kB]
+Get:14 http://mirrors.digitalocean.com/ubuntu disco/main amd64 fontconfig-config all 2.13.1-2ubuntu2 [28.9 kB]
+Get:15 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libfontconfig1 amd64 2.13.1-2ubuntu2 [114 kB]
+Get:16 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libpixman-1-0 amd64 0.36.0-1 [229 kB]
+Get:17 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxcb-render0 amd64 1.13.1-2 [14.8 kB]
+Get:18 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxcb-shm0 amd64 1.13.1-2 [5548 B]
+Get:19 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxrender1 amd64 1:0.9.10-1 [18.7 kB]
+Get:20 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libcairo2 amd64 1.16.0-4 [583 kB]
+Get:21 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libcroco3 amd64 0.6.12-3 [81.4 kB]
+Get:22 http://mirrors.digitalocean.com/ubuntu disco/main amd64 fontconfig amd64 2.13.1-2ubuntu2 [171 kB]
+Get:23 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libthai-data all 0.1.28-2 [134 kB]
+Get:24 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libdatrie1 amd64 0.2.12-2 [18.5 kB]
+Get:25 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libthai0 amd64 0.1.28-2 [18.1 kB]
+Get:26 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libpango-1.0-0 amd64 1.42.4-6ubuntu0.1 [155 kB]
+Get:27 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgraphite2-3 amd64 1.3.13-7 [73.2 kB]
+Get:28 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libharfbuzz0b amd64 2.3.1-1 [360 kB]
+Get:29 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libpangoft2-1.0-0 amd64 1.42.4-6ubuntu0.1 [35.6 kB]
+Get:30 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libpangocairo-1.0-0 amd64 1.42.4-6ubuntu0.1 [23.0 kB]
+Get:31 http://mirrors.digitalocean.com/ubuntu disco/main amd64 librsvg2-2 amd64 2.44.10-2 [1233 kB]
+Get:32 http://mirrors.digitalocean.com/ubuntu disco/main amd64 librsvg2-common amd64 2.44.10-2 [9076 B]
+Get:33 http://mirrors.digitalocean.com/ubuntu disco/main amd64 humanity-icon-theme all 0.6.15 [1250 kB]
+Get:34 http://mirrors.digitalocean.com/ubuntu disco/main amd64 ubuntu-mono all 19.04-0ubuntu1 [149 kB]
+Get:35 http://mirrors.digitalocean.com/ubuntu disco/main amd64 adwaita-icon-theme all 3.32.0-1ubuntu1 [3160 kB]
+Get:36 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libatspi2.0-0 amd64 2.32.0-1 [60.0 kB]
+Get:37 http://mirrors.digitalocean.com/ubuntu disco/main amd64 x11-common all 1:7.7+19ubuntu12 [22.4 kB]
+Get:38 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxtst6 amd64 2:1.2.3-1 [12.8 kB]
+Get:39 http://mirrors.digitalocean.com/ubuntu disco/main amd64 at-spi2-core amd64 2.32.0-1 [48.4 kB]
+Get:40 http://mirrors.digitalocean.com/ubuntu disco/main amd64 java-common all 0.71 [6752 B]
+Get:41 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libavahi-common-data amd64 0.7-4ubuntu5 [21.4 kB]
+Get:42 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libavahi-common3 amd64 0.7-4ubuntu5 [21.6 kB]
+Get:43 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libavahi-client3 amd64 0.7-4ubuntu5 [25.4 kB]
+Get:44 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libcups2 amd64 2.2.10-4ubuntu2 [211 kB]
+Get:45 http://mirrors.digitalocean.com/ubuntu disco/main amd64 liblcms2-2 amd64 2.9-3 [139 kB]
+Get:46 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libpcsclite1 amd64 1.8.24-1 [21.8 kB]
+Get:47 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxi6 amd64 2:1.7.9-1 [29.2 kB]
+Get:48 http://mirrors.digitalocean.com/ubuntu disco-updates/universe amd64 openjdk-8-jre-headless amd64 8u222-b10-1ubuntu1~19.04.1 [27.2 MB]
+Get:49 http://mirrors.digitalocean.com/ubuntu disco/main amd64 ca-certificates-java all 20190405ubuntu1 [12.2 kB]
+Get:50 http://mirrors.digitalocean.com/ubuntu disco/main amd64 fonts-dejavu-extra all 2.37-1 [1953 kB]
+Get:51 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libasound2-data all 1.1.8-1 [41.5 kB]
+Get:52 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libasound2 amd64 1.1.8-1 [340 kB]
+Get:53 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libasyncns0 amd64 0.8-6 [12.1 kB]
+Get:54 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libatk1.0-data all 2.32.0-1 [2964 B]
+Get:55 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libatk1.0-0 amd64 2.32.0-1 [44.5 kB]
+Get:56 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libatk-bridge2.0-0 amd64 2.32.0-1 [56.9 kB]
+Get:57 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libfontenc1 amd64 1:1.1.3-1 [13.9 kB]
+Get:58 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libglvnd0 amd64 1.1.1-0ubuntu1 [45.4 kB]
+Get:59 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libglapi-mesa amd64 19.0.8-0ubuntu0~19.04.1 [24.9 kB]
+Get:60 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libx11-xcb1 amd64 2:1.6.7-1 [9204 B]
+Get:61 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxcb-dri2-0 amd64 1.13.1-2 [6892 B]
+Get:62 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxcb-dri3-0 amd64 1.13.1-2 [6488 B]
+Get:63 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxcb-glx0 amd64 1.13.1-2 [21.9 kB]
+Get:64 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxcb-present0 amd64 1.13.1-2 [5544 B]
+Get:65 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxcb-sync1 amd64 1.13.1-2 [8832 B]
+Get:66 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxdamage1 amd64 1:1.1.4-3 [6934 B]
+Get:67 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxfixes3 amd64 1:5.0.3-1 [10.8 kB]
+Get:68 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxshmfence1 amd64 1.3-1 [5028 B]
+Get:69 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libdrm-amdgpu1 amd64 2.4.97-1ubuntu1 [17.6 kB]
+Get:70 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libpciaccess0 amd64 0.14-1 [17.9 kB]
+Get:71 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libdrm-intel1 amd64 2.4.97-1ubuntu1 [59.9 kB]
+Get:72 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libdrm-nouveau2 amd64 2.4.97-1ubuntu1 [16.5 kB]
+Get:73 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libdrm-radeon1 amd64 2.4.97-1ubuntu1 [21.4 kB]
+Get:74 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libllvm8 amd64 1:8-3 [13.6 MB]
+Get:75 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libsensors-config all 1:3.5.0-3ubuntu1 [6168 B]
+Get:76 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libsensors5 amd64 1:3.5.0-3ubuntu1 [27.1 kB]
+Get:77 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libgl1-mesa-dri amd64 19.0.8-0ubuntu0~19.04.1 [6781 kB]
+Get:78 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libglx-mesa0 amd64 19.0.8-0ubuntu0~19.04.1 [138 kB]
+Get:79 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libglx0 amd64 1.1.1-0ubuntu1 [28.2 kB]
+Get:80 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgl1 amd64 1.1.1-0ubuntu1 [88.3 kB]
+Get:81 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libice6 amd64 2:1.0.9-2 [40.2 kB]
+Get:82 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libsm6 amd64 2:1.2.3-1 [16.1 kB]
+Get:83 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxt6 amd64 1:1.1.5-1 [160 kB]
+Get:84 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxmu6 amd64 2:1.1.2-2 [46.0 kB]
+Get:85 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxpm4 amd64 1:3.5.12-1 [34.0 kB]
+Get:86 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxaw7 amd64 2:1.0.13-1 [173 kB]
+Get:87 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxcb-shape0 amd64 1.13.1-2 [5908 B]
+Get:88 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxcomposite1 amd64 1:0.4.4-2 [6988 B]
+Get:89 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxft2 amd64 2.3.2-2 [38.5 kB]
+Get:90 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxinerama1 amd64 2:1.1.4-2 [6904 B]
+Get:91 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxrandr2 amd64 2:1.5.1-1 [18.1 kB]
+Get:92 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxv1 amd64 2:1.0.11-1 [10.7 kB]
+Get:93 http://mirrors.digitalocean.com/ubuntu disco/main amd64 x11-utils amd64 7.7+4 [200 kB]
+Get:94 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libatk-wrapper-java all 0.33.3-21 [34.6 kB]
+Get:95 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libatk-wrapper-java-jni amd64 0.33.3-21 [28.2 kB]
+Get:96 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libflac8 amd64 1.3.2-3 [213 kB]
+Get:97 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgtk2.0-common all 2.24.32-3ubuntu1 [125 kB]
+Get:98 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libxcursor1 amd64 1:1.2.0-1 [19.8 kB]
+Get:99 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgtk2.0-0 amd64 2.24.32-3ubuntu1 [1777 kB]
+Get:100 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgail18 amd64 2.24.32-3ubuntu1 [14.4 kB]
+Get:101 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgail-common amd64 2.24.32-3ubuntu1 [114 kB]
+Get:102 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgdk-pixbuf2.0-bin amd64 2.38.1+dfsg-1 [13.9 kB]
+Get:103 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgif7 amd64 5.1.4-3 [30.6 kB]
+Get:104 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libgl1-mesa-glx amd64 19.0.8-0ubuntu0~19.04.1 [5392 B]
+Get:105 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgtk2.0-bin amd64 2.24.32-3ubuntu1 [7740 B]
+Get:106 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libvorbis0a amd64 1.3.6-2 [86.1 kB]
+Get:107 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libvorbisenc2 amd64 1.3.6-2 [70.8 kB]
+Get:108 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libsndfile1 amd64 1.0.28-6 [170 kB]
+Get:109 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libpulse0 amd64 1:12.2-2ubuntu3 [261 kB]
+Get:110 http://mirrors.digitalocean.com/ubuntu disco-updates/universe amd64 openjdk-8-jre amd64 8u222-b10-1ubuntu1~19.04.1 [69.2 kB]
+Fetched 64.8 MB in 4s (16.9 MB/s)
+Selecting previously unselected package libogg0:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 60498 files and directories currently installed.)
+Preparing to unpack .../000-libogg0_1.3.2-1_amd64.deb ...
+Unpacking libogg0:amd64 (1.3.2-1) ...
+Selecting previously unselected package libxxf86dga1:amd64.
+Preparing to unpack .../001-libxxf86dga1_2%3a1.1.4-1_amd64.deb ...
+Unpacking libxxf86dga1:amd64 (2:1.1.4-1) ...
+Selecting previously unselected package libxxf86vm1:amd64.
+Preparing to unpack .../002-libxxf86vm1_1%3a1.1.4-1_amd64.deb ...
+Unpacking libxxf86vm1:amd64 (1:1.1.4-1) ...
+Selecting previously unselected package hicolor-icon-theme.
+Preparing to unpack .../003-hicolor-icon-theme_0.17-2_all.deb ...
+Unpacking hicolor-icon-theme (0.17-2) ...
+Selecting previously unselected package libjpeg-turbo8:amd64.
+Preparing to unpack .../004-libjpeg-turbo8_2.0.1-0ubuntu2_amd64.deb ...
+Unpacking libjpeg-turbo8:amd64 (2.0.1-0ubuntu2) ...
+Selecting previously unselected package libjpeg8:amd64.
+Preparing to unpack .../005-libjpeg8_8c-2ubuntu8_amd64.deb ...
+Unpacking libjpeg8:amd64 (8c-2ubuntu8) ...
+Selecting previously unselected package libjbig0:amd64.
+Preparing to unpack .../006-libjbig0_2.1-3.1build1_amd64.deb ...
+Unpacking libjbig0:amd64 (2.1-3.1build1) ...
+Selecting previously unselected package libwebp6:amd64.
+Preparing to unpack .../007-libwebp6_0.6.1-2_amd64.deb ...
+Unpacking libwebp6:amd64 (0.6.1-2) ...
+Selecting previously unselected package libtiff5:amd64.
+Preparing to unpack .../008-libtiff5_4.0.10-4_amd64.deb ...
+Unpacking libtiff5:amd64 (4.0.10-4) ...
+Selecting previously unselected package libgdk-pixbuf2.0-common.
+Preparing to unpack .../009-libgdk-pixbuf2.0-common_2.38.1+dfsg-1_all.deb ...
+Unpacking libgdk-pixbuf2.0-common (2.38.1+dfsg-1) ...
+Selecting previously unselected package libgdk-pixbuf2.0-0:amd64.
+Preparing to unpack .../010-libgdk-pixbuf2.0-0_2.38.1+dfsg-1_amd64.deb ...
+Unpacking libgdk-pixbuf2.0-0:amd64 (2.38.1+dfsg-1) ...
+Selecting previously unselected package gtk-update-icon-cache.
+Preparing to unpack .../011-gtk-update-icon-cache_3.24.8-1ubuntu1_amd64.deb ...
+No diversion 'diversion of /usr/sbin/update-icon-caches to /usr/sbin/update-icon-caches.gtk2 by libgtk-3-bin', none removed.
+No diversion 'diversion of /usr/share/man/man8/update-icon-caches.8.gz to /usr/share/man/man8/update-icon-caches.gtk2.8.gz by libgtk-3-bin', none removed.
+Unpacking gtk-update-icon-cache (3.24.8-1ubuntu1) ...
+Selecting previously unselected package fonts-dejavu-core.
+Preparing to unpack .../012-fonts-dejavu-core_2.37-1_all.deb ...
+Unpacking fonts-dejavu-core (2.37-1) ...
+Selecting previously unselected package fontconfig-config.
+Preparing to unpack .../013-fontconfig-config_2.13.1-2ubuntu2_all.deb ...
+Unpacking fontconfig-config (2.13.1-2ubuntu2) ...
+Selecting previously unselected package libfontconfig1:amd64.
+Preparing to unpack .../014-libfontconfig1_2.13.1-2ubuntu2_amd64.deb ...
+Unpacking libfontconfig1:amd64 (2.13.1-2ubuntu2) ...
+Selecting previously unselected package libpixman-1-0:amd64.
+Preparing to unpack .../015-libpixman-1-0_0.36.0-1_amd64.deb ...
+Unpacking libpixman-1-0:amd64 (0.36.0-1) ...
+Selecting previously unselected package libxcb-render0:amd64.
+Preparing to unpack .../016-libxcb-render0_1.13.1-2_amd64.deb ...
+Unpacking libxcb-render0:amd64 (1.13.1-2) ...
+Selecting previously unselected package libxcb-shm0:amd64.
+Preparing to unpack .../017-libxcb-shm0_1.13.1-2_amd64.deb ...
+Unpacking libxcb-shm0:amd64 (1.13.1-2) ...
+Selecting previously unselected package libxrender1:amd64.
+Preparing to unpack .../018-libxrender1_1%3a0.9.10-1_amd64.deb ...
+Unpacking libxrender1:amd64 (1:0.9.10-1) ...
+Selecting previously unselected package libcairo2:amd64.
+Preparing to unpack .../019-libcairo2_1.16.0-4_amd64.deb ...
+Unpacking libcairo2:amd64 (1.16.0-4) ...
+Selecting previously unselected package libcroco3:amd64.
+Preparing to unpack .../020-libcroco3_0.6.12-3_amd64.deb ...
+Unpacking libcroco3:amd64 (0.6.12-3) ...
+Selecting previously unselected package fontconfig.
+Preparing to unpack .../021-fontconfig_2.13.1-2ubuntu2_amd64.deb ...
+Unpacking fontconfig (2.13.1-2ubuntu2) ...
+Selecting previously unselected package libthai-data.
+Preparing to unpack .../022-libthai-data_0.1.28-2_all.deb ...
+Unpacking libthai-data (0.1.28-2) ...
+Selecting previously unselected package libdatrie1:amd64.
+Preparing to unpack .../023-libdatrie1_0.2.12-2_amd64.deb ...
+Unpacking libdatrie1:amd64 (0.2.12-2) ...
+Selecting previously unselected package libthai0:amd64.
+Preparing to unpack .../024-libthai0_0.1.28-2_amd64.deb ...
+Unpacking libthai0:amd64 (0.1.28-2) ...
+Selecting previously unselected package libpango-1.0-0:amd64.
+Preparing to unpack .../025-libpango-1.0-0_1.42.4-6ubuntu0.1_amd64.deb ...
+Unpacking libpango-1.0-0:amd64 (1.42.4-6ubuntu0.1) ...
+Selecting previously unselected package libgraphite2-3:amd64.
+Preparing to unpack .../026-libgraphite2-3_1.3.13-7_amd64.deb ...
+Unpacking libgraphite2-3:amd64 (1.3.13-7) ...
+Selecting previously unselected package libharfbuzz0b:amd64.
+Preparing to unpack .../027-libharfbuzz0b_2.3.1-1_amd64.deb ...
+Unpacking libharfbuzz0b:amd64 (2.3.1-1) ...
+Selecting previously unselected package libpangoft2-1.0-0:amd64.
+Preparing to unpack .../028-libpangoft2-1.0-0_1.42.4-6ubuntu0.1_amd64.deb ...
+Unpacking libpangoft2-1.0-0:amd64 (1.42.4-6ubuntu0.1) ...
+Selecting previously unselected package libpangocairo-1.0-0:amd64.
+Preparing to unpack .../029-libpangocairo-1.0-0_1.42.4-6ubuntu0.1_amd64.deb ...
+Unpacking libpangocairo-1.0-0:amd64 (1.42.4-6ubuntu0.1) ...
+Selecting previously unselected package librsvg2-2:amd64.
+Preparing to unpack .../030-librsvg2-2_2.44.10-2_amd64.deb ...
+Unpacking librsvg2-2:amd64 (2.44.10-2) ...
+Selecting previously unselected package librsvg2-common:amd64.
+Preparing to unpack .../031-librsvg2-common_2.44.10-2_amd64.deb ...
+Unpacking librsvg2-common:amd64 (2.44.10-2) ...
+Selecting previously unselected package humanity-icon-theme.
+Preparing to unpack .../032-humanity-icon-theme_0.6.15_all.deb ...
+Unpacking humanity-icon-theme (0.6.15) ...
+Selecting previously unselected package ubuntu-mono.
+Preparing to unpack .../033-ubuntu-mono_19.04-0ubuntu1_all.deb ...
+Unpacking ubuntu-mono (19.04-0ubuntu1) ...
+Selecting previously unselected package adwaita-icon-theme.
+Preparing to unpack .../034-adwaita-icon-theme_3.32.0-1ubuntu1_all.deb ...
+Unpacking adwaita-icon-theme (3.32.0-1ubuntu1) ...
+Selecting previously unselected package libatspi2.0-0:amd64.
+Preparing to unpack .../035-libatspi2.0-0_2.32.0-1_amd64.deb ...
+Unpacking libatspi2.0-0:amd64 (2.32.0-1) ...
+Selecting previously unselected package x11-common.
+Preparing to unpack .../036-x11-common_1%3a7.7+19ubuntu12_all.deb ...
+dpkg-query: no packages found matching nux-tools
+Unpacking x11-common (1:7.7+19ubuntu12) ...
+Selecting previously unselected package libxtst6:amd64.
+Preparing to unpack .../037-libxtst6_2%3a1.2.3-1_amd64.deb ...
+Unpacking libxtst6:amd64 (2:1.2.3-1) ...
+Selecting previously unselected package at-spi2-core.
+Preparing to unpack .../038-at-spi2-core_2.32.0-1_amd64.deb ...
+Unpacking at-spi2-core (2.32.0-1) ...
+Selecting previously unselected package java-common.
+Preparing to unpack .../039-java-common_0.71_all.deb ...
+Unpacking java-common (0.71) ...
+Selecting previously unselected package libavahi-common-data:amd64.
+Preparing to unpack .../040-libavahi-common-data_0.7-4ubuntu5_amd64.deb ...
+Unpacking libavahi-common-data:amd64 (0.7-4ubuntu5) ...
+Selecting previously unselected package libavahi-common3:amd64.
+Preparing to unpack .../041-libavahi-common3_0.7-4ubuntu5_amd64.deb ...
+Unpacking libavahi-common3:amd64 (0.7-4ubuntu5) ...
+Selecting previously unselected package libavahi-client3:amd64.
+Preparing to unpack .../042-libavahi-client3_0.7-4ubuntu5_amd64.deb ...
+Unpacking libavahi-client3:amd64 (0.7-4ubuntu5) ...
+Selecting previously unselected package libcups2:amd64.
+Preparing to unpack .../043-libcups2_2.2.10-4ubuntu2_amd64.deb ...
+Unpacking libcups2:amd64 (2.2.10-4ubuntu2) ...
+Selecting previously unselected package liblcms2-2:amd64.
+Preparing to unpack .../044-liblcms2-2_2.9-3_amd64.deb ...
+Unpacking liblcms2-2:amd64 (2.9-3) ...
+Selecting previously unselected package libpcsclite1:amd64.
+Preparing to unpack .../045-libpcsclite1_1.8.24-1_amd64.deb ...
+Unpacking libpcsclite1:amd64 (1.8.24-1) ...
+Selecting previously unselected package libxi6:amd64.
+Preparing to unpack .../046-libxi6_2%3a1.7.9-1_amd64.deb ...
+Unpacking libxi6:amd64 (2:1.7.9-1) ...
+Selecting previously unselected package openjdk-8-jre-headless:amd64.
+Preparing to unpack .../047-openjdk-8-jre-headless_8u222-b10-1ubuntu1~19.04.1_amd64.deb ...
+Unpacking openjdk-8-jre-headless:amd64 (8u222-b10-1ubuntu1~19.04.1) ...
+Selecting previously unselected package ca-certificates-java.
+Preparing to unpack .../048-ca-certificates-java_20190405ubuntu1_all.deb ...
+Unpacking ca-certificates-java (20190405ubuntu1) ...
+Selecting previously unselected package fonts-dejavu-extra.
+Preparing to unpack .../049-fonts-dejavu-extra_2.37-1_all.deb ...
+Unpacking fonts-dejavu-extra (2.37-1) ...
+Selecting previously unselected package libasound2-data.
+Preparing to unpack .../050-libasound2-data_1.1.8-1_all.deb ...
+Unpacking libasound2-data (1.1.8-1) ...
+Selecting previously unselected package libasound2:amd64.
+Preparing to unpack .../051-libasound2_1.1.8-1_amd64.deb ...
+Unpacking libasound2:amd64 (1.1.8-1) ...
+Selecting previously unselected package libasyncns0:amd64.
+Preparing to unpack .../052-libasyncns0_0.8-6_amd64.deb ...
+Unpacking libasyncns0:amd64 (0.8-6) ...
+Selecting previously unselected package libatk1.0-data.
+Preparing to unpack .../053-libatk1.0-data_2.32.0-1_all.deb ...
+Unpacking libatk1.0-data (2.32.0-1) ...
+Selecting previously unselected package libatk1.0-0:amd64.
+Preparing to unpack .../054-libatk1.0-0_2.32.0-1_amd64.deb ...
+Unpacking libatk1.0-0:amd64 (2.32.0-1) ...
+Selecting previously unselected package libatk-bridge2.0-0:amd64.
+Preparing to unpack .../055-libatk-bridge2.0-0_2.32.0-1_amd64.deb ...
+Unpacking libatk-bridge2.0-0:amd64 (2.32.0-1) ...
+Selecting previously unselected package libfontenc1:amd64.
+Preparing to unpack .../056-libfontenc1_1%3a1.1.3-1_amd64.deb ...
+Unpacking libfontenc1:amd64 (1:1.1.3-1) ...
+Selecting previously unselected package libglvnd0:amd64.
+Preparing to unpack .../057-libglvnd0_1.1.1-0ubuntu1_amd64.deb ...
+Unpacking libglvnd0:amd64 (1.1.1-0ubuntu1) ...
+Selecting previously unselected package libglapi-mesa:amd64.
+Preparing to unpack .../058-libglapi-mesa_19.0.8-0ubuntu0~19.04.1_amd64.deb ...
+Unpacking libglapi-mesa:amd64 (19.0.8-0ubuntu0~19.04.1) ...
+Selecting previously unselected package libx11-xcb1:amd64.
+Preparing to unpack .../059-libx11-xcb1_2%3a1.6.7-1_amd64.deb ...
+Unpacking libx11-xcb1:amd64 (2:1.6.7-1) ...
+Selecting previously unselected package libxcb-dri2-0:amd64.
+Preparing to unpack .../060-libxcb-dri2-0_1.13.1-2_amd64.deb ...
+Unpacking libxcb-dri2-0:amd64 (1.13.1-2) ...
+Selecting previously unselected package libxcb-dri3-0:amd64.
+Preparing to unpack .../061-libxcb-dri3-0_1.13.1-2_amd64.deb ...
+Unpacking libxcb-dri3-0:amd64 (1.13.1-2) ...
+Selecting previously unselected package libxcb-glx0:amd64.
+Preparing to unpack .../062-libxcb-glx0_1.13.1-2_amd64.deb ...
+Unpacking libxcb-glx0:amd64 (1.13.1-2) ...
+Selecting previously unselected package libxcb-present0:amd64.
+Preparing to unpack .../063-libxcb-present0_1.13.1-2_amd64.deb ...
+Unpacking libxcb-present0:amd64 (1.13.1-2) ...
+Selecting previously unselected package libxcb-sync1:amd64.
+Preparing to unpack .../064-libxcb-sync1_1.13.1-2_amd64.deb ...
+Unpacking libxcb-sync1:amd64 (1.13.1-2) ...
+Selecting previously unselected package libxdamage1:amd64.
+Preparing to unpack .../065-libxdamage1_1%3a1.1.4-3_amd64.deb ...
+Unpacking libxdamage1:amd64 (1:1.1.4-3) ...
+Selecting previously unselected package libxfixes3:amd64.
+Preparing to unpack .../066-libxfixes3_1%3a5.0.3-1_amd64.deb ...
+Unpacking libxfixes3:amd64 (1:5.0.3-1) ...
+Selecting previously unselected package libxshmfence1:amd64.
+Preparing to unpack .../067-libxshmfence1_1.3-1_amd64.deb ...
+Unpacking libxshmfence1:amd64 (1.3-1) ...
+Selecting previously unselected package libdrm-amdgpu1:amd64.
+Preparing to unpack .../068-libdrm-amdgpu1_2.4.97-1ubuntu1_amd64.deb ...
+Unpacking libdrm-amdgpu1:amd64 (2.4.97-1ubuntu1) ...
+Selecting previously unselected package libpciaccess0:amd64.
+Preparing to unpack .../069-libpciaccess0_0.14-1_amd64.deb ...
+Unpacking libpciaccess0:amd64 (0.14-1) ...
+Selecting previously unselected package libdrm-intel1:amd64.
+Preparing to unpack .../070-libdrm-intel1_2.4.97-1ubuntu1_amd64.deb ...
+Unpacking libdrm-intel1:amd64 (2.4.97-1ubuntu1) ...
+Selecting previously unselected package libdrm-nouveau2:amd64.
+Preparing to unpack .../071-libdrm-nouveau2_2.4.97-1ubuntu1_amd64.deb ...
+Unpacking libdrm-nouveau2:amd64 (2.4.97-1ubuntu1) ...
+Selecting previously unselected package libdrm-radeon1:amd64.
+Preparing to unpack .../072-libdrm-radeon1_2.4.97-1ubuntu1_amd64.deb ...
+Unpacking libdrm-radeon1:amd64 (2.4.97-1ubuntu1) ...
+Selecting previously unselected package libllvm8:amd64.
+Preparing to unpack .../073-libllvm8_1%3a8-3_amd64.deb ...
+Unpacking libllvm8:amd64 (1:8-3) ...
+Selecting previously unselected package libsensors-config.
+Preparing to unpack .../074-libsensors-config_1%3a3.5.0-3ubuntu1_all.deb ...
+Unpacking libsensors-config (1:3.5.0-3ubuntu1) ...
+Selecting previously unselected package libsensors5:amd64.
+Preparing to unpack .../075-libsensors5_1%3a3.5.0-3ubuntu1_amd64.deb ...
+Unpacking libsensors5:amd64 (1:3.5.0-3ubuntu1) ...
+Selecting previously unselected package libgl1-mesa-dri:amd64.
+Preparing to unpack .../076-libgl1-mesa-dri_19.0.8-0ubuntu0~19.04.1_amd64.deb ...
+Unpacking libgl1-mesa-dri:amd64 (19.0.8-0ubuntu0~19.04.1) ...
+Selecting previously unselected package libglx-mesa0:amd64.
+Preparing to unpack .../077-libglx-mesa0_19.0.8-0ubuntu0~19.04.1_amd64.deb ...
+Unpacking libglx-mesa0:amd64 (19.0.8-0ubuntu0~19.04.1) ...
+Selecting previously unselected package libglx0:amd64.
+Preparing to unpack .../078-libglx0_1.1.1-0ubuntu1_amd64.deb ...
+Unpacking libglx0:amd64 (1.1.1-0ubuntu1) ...
+Selecting previously unselected package libgl1:amd64.
+Preparing to unpack .../079-libgl1_1.1.1-0ubuntu1_amd64.deb ...
+Unpacking libgl1:amd64 (1.1.1-0ubuntu1) ...
+Selecting previously unselected package libice6:amd64.
+Preparing to unpack .../080-libice6_2%3a1.0.9-2_amd64.deb ...
+Unpacking libice6:amd64 (2:1.0.9-2) ...
+Selecting previously unselected package libsm6:amd64.
+Preparing to unpack .../081-libsm6_2%3a1.2.3-1_amd64.deb ...
+Unpacking libsm6:amd64 (2:1.2.3-1) ...
+Selecting previously unselected package libxt6:amd64.
+Preparing to unpack .../082-libxt6_1%3a1.1.5-1_amd64.deb ...
+Unpacking libxt6:amd64 (1:1.1.5-1) ...
+Selecting previously unselected package libxmu6:amd64.
+Preparing to unpack .../083-libxmu6_2%3a1.1.2-2_amd64.deb ...
+Unpacking libxmu6:amd64 (2:1.1.2-2) ...
+Selecting previously unselected package libxpm4:amd64.
+Preparing to unpack .../084-libxpm4_1%3a3.5.12-1_amd64.deb ...
+Unpacking libxpm4:amd64 (1:3.5.12-1) ...
+Selecting previously unselected package libxaw7:amd64.
+Preparing to unpack .../085-libxaw7_2%3a1.0.13-1_amd64.deb ...
+Unpacking libxaw7:amd64 (2:1.0.13-1) ...
+Selecting previously unselected package libxcb-shape0:amd64.
+Preparing to unpack .../086-libxcb-shape0_1.13.1-2_amd64.deb ...
+Unpacking libxcb-shape0:amd64 (1.13.1-2) ...
+Selecting previously unselected package libxcomposite1:amd64.
+Preparing to unpack .../087-libxcomposite1_1%3a0.4.4-2_amd64.deb ...
+Unpacking libxcomposite1:amd64 (1:0.4.4-2) ...
+Selecting previously unselected package libxft2:amd64.
+Preparing to unpack .../088-libxft2_2.3.2-2_amd64.deb ...
+Unpacking libxft2:amd64 (2.3.2-2) ...
+Selecting previously unselected package libxinerama1:amd64.
+Preparing to unpack .../089-libxinerama1_2%3a1.1.4-2_amd64.deb ...
+Unpacking libxinerama1:amd64 (2:1.1.4-2) ...
+Selecting previously unselected package libxrandr2:amd64.
+Preparing to unpack .../090-libxrandr2_2%3a1.5.1-1_amd64.deb ...
+Unpacking libxrandr2:amd64 (2:1.5.1-1) ...
+Selecting previously unselected package libxv1:amd64.
+Preparing to unpack .../091-libxv1_2%3a1.0.11-1_amd64.deb ...
+Unpacking libxv1:amd64 (2:1.0.11-1) ...
+Selecting previously unselected package x11-utils.
+Preparing to unpack .../092-x11-utils_7.7+4_amd64.deb ...
+Unpacking x11-utils (7.7+4) ...
+Selecting previously unselected package libatk-wrapper-java.
+Preparing to unpack .../093-libatk-wrapper-java_0.33.3-21_all.deb ...
+Unpacking libatk-wrapper-java (0.33.3-21) ...
+Selecting previously unselected package libatk-wrapper-java-jni:amd64.
+Preparing to unpack .../094-libatk-wrapper-java-jni_0.33.3-21_amd64.deb ...
+Unpacking libatk-wrapper-java-jni:amd64 (0.33.3-21) ...
+Selecting previously unselected package libflac8:amd64.
+Preparing to unpack .../095-libflac8_1.3.2-3_amd64.deb ...
+Unpacking libflac8:amd64 (1.3.2-3) ...
+Selecting previously unselected package libgtk2.0-common.
+Preparing to unpack .../096-libgtk2.0-common_2.24.32-3ubuntu1_all.deb ...
+Unpacking libgtk2.0-common (2.24.32-3ubuntu1) ...
+Selecting previously unselected package libxcursor1:amd64.
+Preparing to unpack .../097-libxcursor1_1%3a1.2.0-1_amd64.deb ...
+Unpacking libxcursor1:amd64 (1:1.2.0-1) ...
+Selecting previously unselected package libgtk2.0-0:amd64.
+Preparing to unpack .../098-libgtk2.0-0_2.24.32-3ubuntu1_amd64.deb ...
+Unpacking libgtk2.0-0:amd64 (2.24.32-3ubuntu1) ...
+Selecting previously unselected package libgail18:amd64.
+Preparing to unpack .../099-libgail18_2.24.32-3ubuntu1_amd64.deb ...
+Unpacking libgail18:amd64 (2.24.32-3ubuntu1) ...
+Selecting previously unselected package libgail-common:amd64.
+Preparing to unpack .../100-libgail-common_2.24.32-3ubuntu1_amd64.deb ...
+Unpacking libgail-common:amd64 (2.24.32-3ubuntu1) ...
+Selecting previously unselected package libgdk-pixbuf2.0-bin.
+Preparing to unpack .../101-libgdk-pixbuf2.0-bin_2.38.1+dfsg-1_amd64.deb ...
+Unpacking libgdk-pixbuf2.0-bin (2.38.1+dfsg-1) ...
+Selecting previously unselected package libgif7:amd64.
+Preparing to unpack .../102-libgif7_5.1.4-3_amd64.deb ...
+Unpacking libgif7:amd64 (5.1.4-3) ...
+Selecting previously unselected package libgl1-mesa-glx:amd64.
+Preparing to unpack .../103-libgl1-mesa-glx_19.0.8-0ubuntu0~19.04.1_amd64.deb ...
+Unpacking libgl1-mesa-glx:amd64 (19.0.8-0ubuntu0~19.04.1) ...
+Selecting previously unselected package libgtk2.0-bin.
+Preparing to unpack .../104-libgtk2.0-bin_2.24.32-3ubuntu1_amd64.deb ...
+Unpacking libgtk2.0-bin (2.24.32-3ubuntu1) ...
+Selecting previously unselected package libvorbis0a:amd64.
+Preparing to unpack .../105-libvorbis0a_1.3.6-2_amd64.deb ...
+Unpacking libvorbis0a:amd64 (1.3.6-2) ...
+Selecting previously unselected package libvorbisenc2:amd64.
+Preparing to unpack .../106-libvorbisenc2_1.3.6-2_amd64.deb ...
+Unpacking libvorbisenc2:amd64 (1.3.6-2) ...
+Selecting previously unselected package libsndfile1:amd64.
+Preparing to unpack .../107-libsndfile1_1.0.28-6_amd64.deb ...
+Unpacking libsndfile1:amd64 (1.0.28-6) ...
+Selecting previously unselected package libpulse0:amd64.
+Preparing to unpack .../108-libpulse0_1%3a12.2-2ubuntu3_amd64.deb ...
+Unpacking libpulse0:amd64 (1:12.2-2ubuntu3) ...
+Selecting previously unselected package openjdk-8-jre:amd64.
+Preparing to unpack .../109-openjdk-8-jre_8u222-b10-1ubuntu1~19.04.1_amd64.deb ...
+Unpacking openjdk-8-jre:amd64 (8u222-b10-1ubuntu1~19.04.1) ...
+Setting up libllvm8:amd64 (1:8-3) ...
+Setting up libgraphite2-3:amd64 (1.3.13-7) ...
+Setting up libxcb-dri3-0:amd64 (1.13.1-2) ...
+Setting up liblcms2-2:amd64 (2.9-3) ...
+Setting up libpixman-1-0:amd64 (0.36.0-1) ...
+Setting up libx11-xcb1:amd64 (2:1.6.7-1) ...
+Setting up libpciaccess0:amd64 (0.14-1) ...
+Setting up libdrm-nouveau2:amd64 (2.4.97-1ubuntu1) ...
+Setting up libxdamage1:amd64 (1:1.1.4-3) ...
+Setting up libogg0:amd64 (1.3.2-1) ...
+Setting up libxpm4:amd64 (1:3.5.12-1) ...
+Setting up hicolor-icon-theme (0.17-2) ...
+Setting up libxi6:amd64 (2:1.7.9-1) ...
+Setting up java-common (0.71) ...
+Setting up libxrender1:amd64 (1:0.9.10-1) ...
+Setting up libdatrie1:amd64 (0.2.12-2) ...
+Setting up libxcb-render0:amd64 (1.13.1-2) ...
+Setting up libdrm-radeon1:amd64 (2.4.97-1ubuntu1) ...
+Setting up libglvnd0:amd64 (1.1.1-0ubuntu1) ...
+Setting up libxcb-glx0:amd64 (1.13.1-2) ...
+Setting up libdrm-intel1:amd64 (2.4.97-1ubuntu1) ...
+Setting up libgdk-pixbuf2.0-common (2.38.1+dfsg-1) ...
+Setting up libxcb-shape0:amd64 (1.13.1-2) ...
+Setting up x11-common (1:7.7+19ubuntu12) ...
+update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults
+Setting up libsensors-config (1:3.5.0-3ubuntu1) ...
+Setting up libxxf86dga1:amd64 (2:1.1.4-1) ...
+Setting up libxcb-shm0:amd64 (1.13.1-2) ...
+Setting up libatspi2.0-0:amd64 (2.32.0-1) ...
+Setting up libjbig0:amd64 (2.1-3.1build1) ...
+Setting up libxxf86vm1:amd64 (1:1.1.4-1) ...
+Setting up libflac8:amd64 (1.3.2-3) ...
+Setting up libxcb-present0:amd64 (1.13.1-2) ...
+Setting up libasound2-data (1.1.8-1) ...
+Setting up libfontenc1:amd64 (1:1.1.3-1) ...
+Setting up libxfixes3:amd64 (1:5.0.3-1) ...
+Setting up libxcb-sync1:amd64 (1.13.1-2) ...
+Setting up libavahi-common-data:amd64 (0.7-4ubuntu5) ...
+Setting up libxinerama1:amd64 (2:1.1.4-2) ...
+Setting up libxv1:amd64 (2:1.0.11-1) ...
+Setting up libvorbis0a:amd64 (1.3.6-2) ...
+Setting up libxrandr2:amd64 (2:1.5.1-1) ...
+Setting up libwebp6:amd64 (0.6.1-2) ...
+Setting up libcroco3:amd64 (0.6.12-3) ...
+Setting up fonts-dejavu-core (2.37-1) ...
+Setting up libpcsclite1:amd64 (1.8.24-1) ...
+Setting up libsensors5:amd64 (1:3.5.0-3ubuntu1) ...
+Setting up libjpeg-turbo8:amd64 (2.0.1-0ubuntu2) ...
+Setting up libglapi-mesa:amd64 (19.0.8-0ubuntu0~19.04.1) ...
+Setting up libxcb-dri2-0:amd64 (1.13.1-2) ...
+Setting up libgif7:amd64 (5.1.4-3) ...
+Setting up libatk1.0-data (2.32.0-1) ...
+Setting up fonts-dejavu-extra (2.37-1) ...
+Setting up libasyncns0:amd64 (0.8-6) ...
+Setting up libxshmfence1:amd64 (1.3-1) ...
+Setting up libasound2:amd64 (1.1.8-1) ...
+Setting up libharfbuzz0b:amd64 (2.3.1-1) ...
+Setting up libthai-data (0.1.28-2) ...
+Setting up libgtk2.0-common (2.24.32-3ubuntu1) ...
+Setting up libatk1.0-0:amd64 (2.32.0-1) ...
+Setting up libxcomposite1:amd64 (1:0.4.4-2) ...
+Setting up libvorbisenc2:amd64 (1.3.6-2) ...
+Setting up libdrm-amdgpu1:amd64 (2.4.97-1ubuntu1) ...
+Setting up libjpeg8:amd64 (8c-2ubuntu8) ...
+Setting up libice6:amd64 (2:1.0.9-2) ...
+Setting up fontconfig-config (2.13.1-2ubuntu2) ...
+Setting up libxtst6:amd64 (2:1.2.3-1) ...
+Setting up libxcursor1:amd64 (1:1.2.0-1) ...
+Setting up libgl1-mesa-dri:amd64 (19.0.8-0ubuntu0~19.04.1) ...
+Setting up libavahi-common3:amd64 (0.7-4ubuntu5) ...
+Setting up libatk-bridge2.0-0:amd64 (2.32.0-1) ...
+Setting up libthai0:amd64 (0.1.28-2) ...
+Setting up at-spi2-core (2.32.0-1) ...
+Setting up libtiff5:amd64 (4.0.10-4) ...
+Setting up libfontconfig1:amd64 (2.13.1-2ubuntu2) ...
+Setting up libsndfile1:amd64 (1.0.28-6) ...
+Setting up libsm6:amd64 (2:1.2.3-1) ...
+Setting up libavahi-client3:amd64 (0.7-4ubuntu5) ...
+Setting up fontconfig (2.13.1-2ubuntu2) ...
+Regenerating fonts cache... done.
+Setting up libxft2:amd64 (2.3.2-2) ...
+Setting up libglx-mesa0:amd64 (19.0.8-0ubuntu0~19.04.1) ...
+Setting up libglx0:amd64 (1.1.1-0ubuntu1) ...
+Setting up libpulse0:amd64 (1:12.2-2ubuntu3) ...
+Setting up libpango-1.0-0:amd64 (1.42.4-6ubuntu0.1) ...
+Setting up libcairo2:amd64 (1.16.0-4) ...
+Setting up libgl1:amd64 (1.1.1-0ubuntu1) ...
+Setting up libgdk-pixbuf2.0-0:amd64 (2.38.1+dfsg-1) ...
+Setting up libxt6:amd64 (1:1.1.5-1) ...
+Setting up libcups2:amd64 (2.2.10-4ubuntu2) ...
+Setting up libgl1-mesa-glx:amd64 (19.0.8-0ubuntu0~19.04.1) ...
+Setting up libgdk-pixbuf2.0-bin (2.38.1+dfsg-1) ...
+Setting up libpangoft2-1.0-0:amd64 (1.42.4-6ubuntu0.1) ...
+Setting up libpangocairo-1.0-0:amd64 (1.42.4-6ubuntu0.1) ...
+Setting up gtk-update-icon-cache (3.24.8-1ubuntu1) ...
+Setting up libxmu6:amd64 (2:1.1.2-2) ...
+Setting up libxaw7:amd64 (2:1.0.13-1) ...
+Setting up librsvg2-2:amd64 (2.44.10-2) ...
+Setting up librsvg2-common:amd64 (2.44.10-2) ...
+Setting up x11-utils (7.7+4) ...
+Setting up libatk-wrapper-java (0.33.3-21) ...
+Setting up libatk-wrapper-java-jni:amd64 (0.33.3-21) ...
+Setting up adwaita-icon-theme (3.32.0-1ubuntu1) ...
+update-alternatives: using /usr/share/icons/Adwaita/cursor.theme to provide /usr/share/icons/default/index.theme (x-cursor-theme) in auto mode
+Setting up openjdk-8-jre-headless:amd64 (8u222-b10-1ubuntu1~19.04.1) ...
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/rmid to provide /usr/bin/rmid (rmid) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/hsdb to provide /usr/bin/hsdb (hsdb) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java to provide /usr/bin/java (java) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/clhsdb to provide /usr/bin/clhsdb (clhsdb) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/keytool to provide /usr/bin/keytool (keytool) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/jjs to provide /usr/bin/jjs (jjs) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/pack200 to provide /usr/bin/pack200 (pack200) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/rmiregistry to provide /usr/bin/rmiregistry (rmiregistry) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/unpack200 to provide /usr/bin/unpack200 (unpack200) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/orbd to provide /usr/bin/orbd (orbd) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/servertool to provide /usr/bin/servertool (servertool) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/tnameserv to provide /usr/bin/tnameserv (tnameserv) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jexec to provide /usr/bin/jexec (jexec) in auto mode
+Setting up ca-certificates-java (20190405ubuntu1) ...
+head: cannot open '/etc/ssl/certs/java/cacerts' for reading: No such file or directory
+Adding debian:QuoVadis_Root_CA_3.pem
+Adding debian:CFCA_EV_ROOT.pem
+Adding debian:GeoTrust_Universal_CA.pem
+Adding debian:EC-ACC.pem
+Adding debian:AffirmTrust_Networking.pem
+Adding debian:AffirmTrust_Premium_ECC.pem
+Adding debian:thawte_Primary_Root_CA_-_G3.pem
+Adding debian:Entrust_Root_Certification_Authority_-_EC1.pem
+Adding debian:TrustCor_ECA-1.pem
+Adding debian:SSL.com_EV_Root_Certification_Authority_ECC.pem
+Adding debian:COMODO_Certification_Authority.pem
+Adding debian:Buypass_Class_3_Root_CA.pem
+Adding debian:GlobalSign_ECC_Root_CA_-_R5.pem
+Adding debian:TeliaSonera_Root_CA_v1.pem
+Adding debian:Global_Chambersign_Root_-_2008.pem
+Adding debian:SSL.com_EV_Root_Certification_Authority_RSA_R2.pem
+Adding debian:Certum_Trusted_Network_CA.pem
+Adding debian:AC_RAIZ_FNMT-RCM.pem
+Adding debian:USERTrust_ECC_Certification_Authority.pem
+Adding debian:QuoVadis_Root_CA_2_G3.pem
+Adding debian:Security_Communication_Root_CA.pem
+Adding debian:AddTrust_External_Root.pem
+Adding debian:TrustCor_RootCert_CA-2.pem
+Adding debian:Microsec_e-Szigno_Root_CA_2009.pem
+Adding debian:Amazon_Root_CA_2.pem
+Adding debian:TUBITAK_Kamu_SM_SSL_Kok_Sertifikasi_-_Surum_1.pem
+Adding debian:DigiCert_Assured_ID_Root_CA.pem
+Adding debian:DigiCert_Assured_ID_Root_G3.pem
+Adding debian:Certplus_Class_2_Primary_CA.pem
+Adding debian:Chambers_of_Commerce_Root_-_2008.pem
+Adding debian:thawte_Primary_Root_CA.pem
+Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5.pem
+Adding debian:Staat_der_Nederlanden_Root_CA_-_G2.pem
+Adding debian:CA_Disig_Root_R2.pem
+Adding debian:USERTrust_RSA_Certification_Authority.pem
+Adding debian:Certigna.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2015.pem
+Adding debian:DigiCert_Global_Root_CA.pem
+Adding debian:thawte_Primary_Root_CA_-_G2.pem
+Adding debian:COMODO_RSA_Certification_Authority.pem
+Adding debian:SwissSign_Gold_CA_-_G2.pem
+Adding debian:OISTE_WISeKey_Global_Root_GC_CA.pem
+Adding debian:Certum_Trusted_Network_CA_2.pem
+Adding debian:SecureTrust_CA.pem
+Adding debian:Security_Communication_RootCA2.pem
+Adding debian:ISRG_Root_X1.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_ECC_RootCA_2015.pem
+Adding debian:Amazon_Root_CA_4.pem
+Adding debian:DigiCert_High_Assurance_EV_Root_CA.pem
+Adding debian:GeoTrust_Global_CA.pem
+Adding debian:Entrust.net_Premium_2048_Secure_Server_CA.pem
+Adding debian:Buypass_Class_2_Root_CA.pem
+Adding debian:GeoTrust_Primary_Certification_Authority_-_G2.pem
+Adding debian:DigiCert_Global_Root_G2.pem
+Adding debian:COMODO_ECC_Certification_Authority.pem
+Adding debian:Taiwan_GRCA.pem
+Adding debian:ACCVRAIZ1.pem
+Adding debian:DigiCert_Global_Root_G3.pem
+Adding debian:GlobalSign_Root_CA_-_R3.pem
+Adding debian:Certinomis_-_Root_CA.pem
+Adding debian:SSL.com_Root_Certification_Authority_RSA.pem
+Adding debian:Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem
+Adding debian:TWCA_Global_Root_CA.pem
+Adding debian:TWCA_Root_Certification_Authority.pem
+Adding debian:Staat_der_Nederlanden_Root_CA_-_G3.pem
+Adding debian:Entrust_Root_Certification_Authority.pem
+Adding debian:Izenpe.com.pem
+Adding debian:QuoVadis_Root_CA.pem
+Adding debian:T-TeleSec_GlobalRoot_Class_2.pem
+Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_-_G3.pem
+Adding debian:Actalis_Authentication_Root_CA.pem
+Adding debian:Amazon_Root_CA_1.pem
+Adding debian:D-TRUST_Root_Class_3_CA_2_EV_2009.pem
+Adding debian:DigiCert_Assured_ID_Root_G2.pem
+Adding debian:Atos_TrustedRoot_2011.pem
+Adding debian:TrustCor_RootCert_CA-1.pem
+Adding debian:GDCA_TrustAUTH_R5_ROOT.pem
+Adding debian:Comodo_AAA_Services_root.pem
+Adding debian:Starfield_Root_Certificate_Authority_-_G2.pem
+Adding debian:Deutsche_Telekom_Root_CA_2.pem
+Adding debian:GlobalSign_Root_CA_-_R2.pem
+Adding debian:OISTE_WISeKey_Global_Root_GB_CA.pem
+Adding debian:T-TeleSec_GlobalRoot_Class_3.pem
+Adding debian:IdenTrust_Commercial_Root_CA_1.pem
+Adding debian:Entrust_Root_Certification_Authority_-_G2.pem
+Adding debian:OISTE_WISeKey_Global_Root_GA_CA.pem
+Adding debian:Network_Solutions_Certificate_Authority.pem
+Adding debian:Cybertrust_Global_Root.pem
+Adding debian:AffirmTrust_Commercial.pem
+Adding debian:certSIGN_ROOT_CA.pem
+Adding debian:QuoVadis_Root_CA_2.pem
+Adding debian:DST_Root_CA_X3.pem
+Adding debian:GlobalSign_ECC_Root_CA_-_R4.pem
+Adding debian:SecureSign_RootCA11.pem
+Adding debian:QuoVadis_Root_CA_3_G3.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2011.pem
+Adding debian:NetLock_Arany_=Class_Gold=_Főtanúsítvány.pem
+Adding debian:Trustis_FPS_Root_CA.pem
+Adding debian:GeoTrust_Primary_Certification_Authority.pem
+Adding debian:AffirmTrust_Premium.pem
+Adding debian:EE_Certification_Centre_Root_CA.pem
+Adding debian:ePKI_Root_Certification_Authority.pem
+Adding debian:LuxTrust_Global_Root_2.pem
+Adding debian:IdenTrust_Public_Sector_Root_CA_1.pem
+Adding debian:SwissSign_Silver_CA_-_G2.pem
+Adding debian:Starfield_Services_Root_Certificate_Authority_-_G2.pem
+Adding debian:Go_Daddy_Root_Certificate_Authority_-_G2.pem
+Adding debian:Secure_Global_CA.pem
+Adding debian:QuoVadis_Root_CA_1_G3.pem
+Adding debian:GeoTrust_Primary_Certification_Authority_-_G3.pem
+Adding debian:DigiCert_Trusted_Root_G4.pem
+Adding debian:Starfield_Class_2_CA.pem
+Adding debian:XRamp_Global_CA_Root.pem
+Adding debian:Sonera_Class_2_Root_CA.pem
+Adding debian:SZAFIR_ROOT_CA2.pem
+Adding debian:Hongkong_Post_Root_CA_1.pem
+Adding debian:GlobalSign_Root_CA_-_R6.pem
+Adding debian:D-TRUST_Root_Class_3_CA_2_2009.pem
+Adding debian:Baltimore_CyberTrust_Root.pem
+Adding debian:Go_Daddy_Class_2_CA.pem
+Adding debian:GlobalSign_Root_CA.pem
+Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G4.pem
+Adding debian:SSL.com_Root_Certification_Authority_ECC.pem
+Adding debian:GeoTrust_Universal_CA_2.pem
+Adding debian:VeriSign_Universal_Root_Certification_Authority.pem
+Adding debian:Staat_der_Nederlanden_EV_Root_CA.pem
+Adding debian:E-Tugra_Certification_Authority.pem
+Adding debian:Amazon_Root_CA_3.pem
+done.
+Setting up libgtk2.0-0:amd64 (2.24.32-3ubuntu1) ...
+Setting up openjdk-8-jre:amd64 (8u222-b10-1ubuntu1~19.04.1) ...
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/policytool to provide /usr/bin/policytool (policytool) in auto mode
+Setting up humanity-icon-theme (0.6.15) ...
+Setting up libgail18:amd64 (2.24.32-3ubuntu1) ...
+Setting up libgtk2.0-bin (2.24.32-3ubuntu1) ...
+Setting up libgail-common:amd64 (2.24.32-3ubuntu1) ...
+Setting up ubuntu-mono (19.04-0ubuntu1) ...
+Processing triggers for systemd (240-6ubuntu5) ...
+Processing triggers for man-db (2.8.5-2) ...
+Processing triggers for ca-certificates (20190110) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+
+done.
+done.
+Processing triggers for mime-support (3.60ubuntu1) ...
+Processing triggers for libc-bin (2.29-0ubuntu2) ...
+Processing triggers for libgdk-pixbuf2.0-0:amd64 (2.38.1+dfsg-1) ...
+
+########################## Tomcat Setup     #########################
+##############################################################################
+###########             Setup Tomcat-users.xml                ################
+###########   Change passwords if used on a public server ####################
+##############################################################################
+
+################################################################################
+#######             Setup manager context.xml                            #######
+####### Allows access from browsers NOT running on same server as Tomcat #######
+################################################################################
+
+################################################################################
+#######                       Setup setenv.sh                            #######
+#######      Sets different environment variables read by Tomcat         #######
+################################################################################
+
+################################################################################
+############################ Create tomcat.service file ########################
+################################################################################
+############################      Add test data to mysql        ########################
+############################   Add system variables to tomcat   ########################
+#########################################
+write credentials in tomcat environment variables...
+#########################################
+############################ Install Nginx and configure reverse proxy #################
+############ Installing nginx  ############
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libgd3 libnginx-mod-http-geoip libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream
+  nginx-common nginx-core
+Suggested packages:
+  libgd-tools fcgiwrap nginx-doc ssl-cert
+The following NEW packages will be installed:
+  libgd3 libnginx-mod-http-geoip libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream nginx
+  nginx-common nginx-core
+0 upgraded, 9 newly installed, 0 to remove and 89 not upgraded.
+Need to get 728 kB of archives.
+After this operation, 2632 kB of additional disk space will be used.
+Get:1 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libgd3 amd64 2.2.5-5.1 [118 kB]
+Get:2 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 nginx-common all 1.15.9-0ubuntu1.1 [37.3 kB]
+Get:3 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libnginx-mod-http-geoip amd64 1.15.9-0ubuntu1.1 [10.8 kB]
+Get:4 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libnginx-mod-http-image-filter amd64 1.15.9-0ubuntu1.1 [14.3 kB]
+Get:5 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libnginx-mod-http-xslt-filter amd64 1.15.9-0ubuntu1.1 [12.6 kB]
+Get:6 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libnginx-mod-mail amd64 1.15.9-0ubuntu1.1 [42.1 kB]
+Get:7 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 libnginx-mod-stream amd64 1.15.9-0ubuntu1.1 [66.3 kB]
+Get:8 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 nginx-core amd64 1.15.9-0ubuntu1.1 [423 kB]
+Get:9 http://mirrors.digitalocean.com/ubuntu disco-updates/main amd64 nginx all 1.15.9-0ubuntu1.1 [3596 B]
+Fetched 728 kB in 0s (2079 kB/s)
+Selecting previously unselected package libgd3:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 74936 files and directories currently installed.)
+Preparing to unpack .../0-libgd3_2.2.5-5.1_amd64.deb ...
+Unpacking libgd3:amd64 (2.2.5-5.1) ...
+Selecting previously unselected package nginx-common.
+Preparing to unpack .../1-nginx-common_1.15.9-0ubuntu1.1_all.deb ...
+Unpacking nginx-common (1.15.9-0ubuntu1.1) ...
+Selecting previously unselected package libnginx-mod-http-geoip.
+Preparing to unpack .../2-libnginx-mod-http-geoip_1.15.9-0ubuntu1.1_amd64.deb ...
+Unpacking libnginx-mod-http-geoip (1.15.9-0ubuntu1.1) ...
+Selecting previously unselected package libnginx-mod-http-image-filter.
+Preparing to unpack .../3-libnginx-mod-http-image-filter_1.15.9-0ubuntu1.1_amd64.deb ...
+Unpacking libnginx-mod-http-image-filter (1.15.9-0ubuntu1.1) ...
+Selecting previously unselected package libnginx-mod-http-xslt-filter.
+Preparing to unpack .../4-libnginx-mod-http-xslt-filter_1.15.9-0ubuntu1.1_amd64.deb ...
+Unpacking libnginx-mod-http-xslt-filter (1.15.9-0ubuntu1.1) ...
+Selecting previously unselected package libnginx-mod-mail.
+Preparing to unpack .../5-libnginx-mod-mail_1.15.9-0ubuntu1.1_amd64.deb ...
+Unpacking libnginx-mod-mail (1.15.9-0ubuntu1.1) ...
+Selecting previously unselected package libnginx-mod-stream.
+Preparing to unpack .../6-libnginx-mod-stream_1.15.9-0ubuntu1.1_amd64.deb ...
+Unpacking libnginx-mod-stream (1.15.9-0ubuntu1.1) ...
+Selecting previously unselected package nginx-core.
+Preparing to unpack .../7-nginx-core_1.15.9-0ubuntu1.1_amd64.deb ...
+Unpacking nginx-core (1.15.9-0ubuntu1.1) ...
+Selecting previously unselected package nginx.
+Preparing to unpack .../8-nginx_1.15.9-0ubuntu1.1_all.deb ...
+Unpacking nginx (1.15.9-0ubuntu1.1) ...
+Setting up nginx-common (1.15.9-0ubuntu1.1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /lib/systemd/system/nginx.service.
+Setting up libnginx-mod-http-xslt-filter (1.15.9-0ubuntu1.1) ...
+Setting up libnginx-mod-http-geoip (1.15.9-0ubuntu1.1) ...
+Setting up libgd3:amd64 (2.2.5-5.1) ...
+Setting up libnginx-mod-mail (1.15.9-0ubuntu1.1) ...
+Setting up libnginx-mod-http-image-filter (1.15.9-0ubuntu1.1) ...
+Setting up libnginx-mod-stream (1.15.9-0ubuntu1.1) ...
+Setting up nginx-core (1.15.9-0ubuntu1.1) ...
+Setting up nginx (1.15.9-0ubuntu1.1) ...
+Processing triggers for ufw (0.36-1ubuntu1) ...
+Rules updated for profile 'OpenSSH'
+Skipped reloading firewall
+Processing triggers for systemd (240-6ubuntu5) ...
+Processing triggers for man-db (2.8.5-2) ...
+Processing triggers for libc-bin (2.29-0ubuntu2) ...
+############################ Add https certificate with certbot ########################
+######### ADD certbot PPA ##############
+Hit:1 http://repo.mysql.com/apt/ubuntu disco InRelease
+Hit:2 http://security.ubuntu.com/ubuntu disco-security InRelease
+Hit:3 http://mirrors.digitalocean.com/ubuntu disco InRelease
+Hit:4 http://mirrors.digitalocean.com/ubuntu disco-updates InRelease
+Hit:5 http://mirrors.digitalocean.com/ubuntu disco-backports InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+software-properties-common is already the newest version (0.97.11).
+software-properties-common set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 89 not upgraded.
+'universe' distribution component enabled for all sources.
+Hit:1 http://repo.mysql.com/apt/ubuntu disco InRelease
+Get:2 http://archive.ubuntu.com/ubuntu disco InRelease [257 kB]
+Hit:3 http://mirrors.digitalocean.com/ubuntu disco InRelease
+Hit:4 http://security.ubuntu.com/ubuntu disco-security InRelease
+Hit:5 http://mirrors.digitalocean.com/ubuntu disco-updates InRelease
+Hit:6 http://mirrors.digitalocean.com/ubuntu disco-backports InRelease
+Get:7 http://archive.ubuntu.com/ubuntu disco/universe amd64 Packages [9065 kB]
+Get:8 http://archive.ubuntu.com/ubuntu disco/universe Translation-en [5251 kB]
+Get:9 http://archive.ubuntu.com/ubuntu disco/universe amd64 c-n-f Metadata [277 kB]
+Fetched 14.9 MB in 4s (3476 kB/s)
+Reading package lists...
+ This is the PPA for packages prepared by Debian Let's Encrypt Team and backported for Ubuntu(s).
+ More info: https://launchpad.net/~certbot/+archive/ubuntu/certbot
+Hit:1 http://repo.mysql.com/apt/ubuntu disco InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu disco InRelease
+Hit:3 http://security.ubuntu.com/ubuntu disco-security InRelease
+Get:4 http://ppa.launchpad.net/certbot/certbot/ubuntu disco InRelease [21.3 kB]
+Hit:5 http://mirrors.digitalocean.com/ubuntu disco InRelease
+Hit:6 http://mirrors.digitalocean.com/ubuntu disco-updates InRelease
+Hit:7 http://mirrors.digitalocean.com/ubuntu disco-backports InRelease
+Get:8 http://ppa.launchpad.net/certbot/certbot/ubuntu disco/main amd64 Packages [2072 B]
+Get:9 http://ppa.launchpad.net/certbot/certbot/ubuntu disco/main Translation-en [1128 B]
+Fetched 24.5 kB in 1s (23.2 kB/s)
+Reading package lists...
+Hit:1 http://repo.mysql.com/apt/ubuntu disco InRelease
+Hit:2 http://security.ubuntu.com/ubuntu disco-security InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu disco InRelease
+Hit:4 http://mirrors.digitalocean.com/ubuntu disco InRelease
+Hit:5 http://ppa.launchpad.net/certbot/certbot/ubuntu disco InRelease
+Hit:6 http://mirrors.digitalocean.com/ubuntu disco-updates InRelease
+Hit:7 http://mirrors.digitalocean.com/ubuntu disco-backports InRelease
+Reading package lists...
+######### Install certbot ##############
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libpython-stdlib libpython2-stdlib libpython2.7-minimal libpython2.7-stdlib
+  python python-minimal python-pyicu python2 python2-minimal python2.7
+  python2.7-minimal python3-acme python3-certbot python3-certbot-nginx
+  python3-configargparse python3-distutils python3-future python3-josepy
+  python3-lib2to3 python3-mock python3-ndg-httpsclient python3-parsedatetime
+  python3-pbr python3-pyparsing python3-requests-toolbelt python3-rfc3339
+  python3-setuptools python3-tz python3-zope.component python3-zope.event
+  python3-zope.hookable
+Suggested packages:
+  python3-certbot-apache python-certbot-doc python-doc python-tk python2-doc
+  python2.7-doc binutils binfmt-support python-acme-doc
+  python-certbot-nginx-doc python-future-doc python-mock-doc
+  python-pyparsing-doc python-setuptools-doc
+The following NEW packages will be installed:
+  certbot libpython-stdlib libpython2-stdlib libpython2.7-minimal
+  libpython2.7-stdlib python python-certbot-nginx python-minimal python-pyicu
+  python2 python2-minimal python2.7 python2.7-minimal python3-acme
+  python3-certbot python3-certbot-nginx python3-configargparse
+  python3-distutils python3-future python3-josepy python3-lib2to3 python3-mock
+  python3-ndg-httpsclient python3-parsedatetime python3-pbr python3-pyparsing
+  python3-requests-toolbelt python3-rfc3339 python3-setuptools python3-tz
+  python3-zope.component python3-zope.event python3-zope.hookable
+0 upgraded, 33 newly installed, 0 to remove and 89 not upgraded.
+Need to get 5621 kB of archives.
+After this operation, 26.9 MB of additional disk space will be used.
+Get:1 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libpython2.7-minimal amd64 2.7.16-2 [335 kB]
+Get:2 http://ppa.launchpad.net/certbot/certbot/ubuntu disco/main amd64 python3-acme all 0.31.0-1+ubuntu19.04.1+certbot+1 [49.8 kB]
+Get:3 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python2.7-minimal amd64 2.7.16-2 [1310 kB]
+Get:4 http://ppa.launchpad.net/certbot/certbot/ubuntu disco/main amd64 python3-certbot all 0.31.0-1+ubuntu19.04.1+certbot+1 [208 kB]
+Get:5 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python2-minimal amd64 2.7.16-1 [27.8 kB]
+Get:6 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python-minimal amd64 2.7.16-1 [5996 B]
+Get:7 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libpython2.7-stdlib amd64 2.7.16-2 [1909 kB]
+Get:8 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python2.7 amd64 2.7.16-2 [244 kB]
+Get:9 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libpython2-stdlib amd64 2.7.16-1 [7432 B]
+Get:10 http://mirrors.digitalocean.com/ubuntu disco/main amd64 libpython-stdlib amd64 2.7.16-1 [5828 B]
+Get:11 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python2 amd64 2.7.16-1 [26.5 kB]
+Get:12 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python amd64 2.7.16-1 [7836 B]
+Get:13 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 python3-josepy all 1.1.0-2 [27.7 kB]
+Get:14 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python3-lib2to3 all 3.7.3-1ubuntu1 [75.4 kB]
+Get:15 http://ppa.launchpad.net/certbot/certbot/ubuntu disco/main amd64 certbot all 0.31.0-1+ubuntu19.04.1+certbot+1 [11.0 kB]
+Get:16 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python3-distutils all 3.7.3-1ubuntu1 [140 kB]
+Get:17 http://ppa.launchpad.net/certbot/certbot/ubuntu disco/main amd64 python3-certbot-nginx all 0.31.0-1+ubuntu19.04.1+certbot+1 [50.1 kB]
+Get:18 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python3-setuptools all 40.8.0-1 [252 kB]
+Get:19 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python3-pbr all 5.1.1-0ubuntu2 [61.1 kB]
+Get:20 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 python3-mock all 2.0.0-4 [47.7 kB]
+Get:21 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python3-requests-toolbelt all 0.8.0-1 [35.1 kB]
+Get:22 http://ppa.launchpad.net/certbot/certbot/ubuntu disco/main amd64 python-certbot-nginx all 0.31.0-1+ubuntu19.04.1+certbot+1 [3068 B]
+Get:23 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python3-tz all 2018.9-1 [24.6 kB]
+Get:24 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python3-rfc3339 all 1.1-1 [6684 B]
+Get:25 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 python3-ndg-httpsclient all 0.5.1-1 [24.2 kB]
+Get:26 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 python3-configargparse all 0.13.0-1 [22.5 kB]
+Get:27 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python3-future all 0.16.0-1 [334 kB]
+Get:28 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 python3-parsedatetime all 2.4-2 [31.6 kB]
+Get:29 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 python3-zope.hookable amd64 4.0.4-4build6 [9128 B]
+Get:30 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 python3-zope.event all 4.2.0-1 [7402 B]
+Get:31 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 python3-zope.component all 4.3.0-1 [38.2 kB]
+Get:32 http://mirrors.digitalocean.com/ubuntu disco/main amd64 python3-pyparsing all 2.2.0+dfsg1-2 [52.2 kB]
+Get:33 http://mirrors.digitalocean.com/ubuntu disco/universe amd64 python-pyicu amd64 2.2-2 [228 kB]
+Fetched 5621 kB in 1s (6975 kB/s)
+Selecting previously unselected package libpython2.7-minimal:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 75027 files and directories currently installed.)
+Preparing to unpack .../0-libpython2.7-minimal_2.7.16-2_amd64.deb ...
+Unpacking libpython2.7-minimal:amd64 (2.7.16-2) ...
+Selecting previously unselected package python2.7-minimal.
+Preparing to unpack .../1-python2.7-minimal_2.7.16-2_amd64.deb ...
+Unpacking python2.7-minimal (2.7.16-2) ...
+Selecting previously unselected package python2-minimal.
+Preparing to unpack .../2-python2-minimal_2.7.16-1_amd64.deb ...
+Unpacking python2-minimal (2.7.16-1) ...
+Selecting previously unselected package python-minimal.
+Preparing to unpack .../3-python-minimal_2.7.16-1_amd64.deb ...
+Unpacking python-minimal (2.7.16-1) ...
+Selecting previously unselected package libpython2.7-stdlib:amd64.
+Preparing to unpack .../4-libpython2.7-stdlib_2.7.16-2_amd64.deb ...
+Unpacking libpython2.7-stdlib:amd64 (2.7.16-2) ...
+Selecting previously unselected package python2.7.
+Preparing to unpack .../5-python2.7_2.7.16-2_amd64.deb ...
+Unpacking python2.7 (2.7.16-2) ...
+Selecting previously unselected package libpython2-stdlib:amd64.
+Preparing to unpack .../6-libpython2-stdlib_2.7.16-1_amd64.deb ...
+Unpacking libpython2-stdlib:amd64 (2.7.16-1) ...
+Selecting previously unselected package libpython-stdlib:amd64.
+Preparing to unpack .../7-libpython-stdlib_2.7.16-1_amd64.deb ...
+Unpacking libpython-stdlib:amd64 (2.7.16-1) ...
+Setting up libpython2.7-minimal:amd64 (2.7.16-2) ...
+Setting up python2.7-minimal (2.7.16-2) ...
+Setting up python2-minimal (2.7.16-1) ...
+Selecting previously unselected package python2.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 75783 files and directories currently installed.)
+Preparing to unpack .../python2_2.7.16-1_amd64.deb ...
+Unpacking python2 (2.7.16-1) ...
+Setting up python-minimal (2.7.16-1) ...
+Selecting previously unselected package python.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 75812 files and directories currently installed.)
+Preparing to unpack .../00-python_2.7.16-1_amd64.deb ...
+Unpacking python (2.7.16-1) ...
+Selecting previously unselected package python3-josepy.
+Preparing to unpack .../01-python3-josepy_1.1.0-2_all.deb ...
+Unpacking python3-josepy (1.1.0-2) ...
+Selecting previously unselected package python3-lib2to3.
+Preparing to unpack .../02-python3-lib2to3_3.7.3-1ubuntu1_all.deb ...
+Unpacking python3-lib2to3 (3.7.3-1ubuntu1) ...
+Selecting previously unselected package python3-distutils.
+Preparing to unpack .../03-python3-distutils_3.7.3-1ubuntu1_all.deb ...
+Unpacking python3-distutils (3.7.3-1ubuntu1) ...
+Selecting previously unselected package python3-setuptools.
+Preparing to unpack .../04-python3-setuptools_40.8.0-1_all.deb ...
+Unpacking python3-setuptools (40.8.0-1) ...
+Selecting previously unselected package python3-pbr.
+Preparing to unpack .../05-python3-pbr_5.1.1-0ubuntu2_all.deb ...
+Unpacking python3-pbr (5.1.1-0ubuntu2) ...
+Selecting previously unselected package python3-mock.
+Preparing to unpack .../06-python3-mock_2.0.0-4_all.deb ...
+Unpacking python3-mock (2.0.0-4) ...
+Selecting previously unselected package python3-requests-toolbelt.
+Preparing to unpack .../07-python3-requests-toolbelt_0.8.0-1_all.deb ...
+Unpacking python3-requests-toolbelt (0.8.0-1) ...
+Selecting previously unselected package python3-tz.
+Preparing to unpack .../08-python3-tz_2018.9-1_all.deb ...
+Unpacking python3-tz (2018.9-1) ...
+Selecting previously unselected package python3-rfc3339.
+Preparing to unpack .../09-python3-rfc3339_1.1-1_all.deb ...
+Unpacking python3-rfc3339 (1.1-1) ...
+Selecting previously unselected package python3-acme.
+Preparing to unpack .../10-python3-acme_0.31.0-1+ubuntu19.04.1+certbot+1_all.deb ...
+Unpacking python3-acme (0.31.0-1+ubuntu19.04.1+certbot+1) ...
+Selecting previously unselected package python3-ndg-httpsclient.
+Preparing to unpack .../11-python3-ndg-httpsclient_0.5.1-1_all.deb ...
+Unpacking python3-ndg-httpsclient (0.5.1-1) ...
+Selecting previously unselected package python3-configargparse.
+Preparing to unpack .../12-python3-configargparse_0.13.0-1_all.deb ...
+Unpacking python3-configargparse (0.13.0-1) ...
+Selecting previously unselected package python3-future.
+Preparing to unpack .../13-python3-future_0.16.0-1_all.deb ...
+Unpacking python3-future (0.16.0-1) ...
+Selecting previously unselected package python3-parsedatetime.
+Preparing to unpack .../14-python3-parsedatetime_2.4-2_all.deb ...
+Unpacking python3-parsedatetime (2.4-2) ...
+Selecting previously unselected package python3-zope.hookable.
+Preparing to unpack .../15-python3-zope.hookable_4.0.4-4build6_amd64.deb ...
+Unpacking python3-zope.hookable (4.0.4-4build6) ...
+Selecting previously unselected package python3-zope.event.
+Preparing to unpack .../16-python3-zope.event_4.2.0-1_all.deb ...
+Unpacking python3-zope.event (4.2.0-1) ...
+Selecting previously unselected package python3-zope.component.
+Preparing to unpack .../17-python3-zope.component_4.3.0-1_all.deb ...
+Unpacking python3-zope.component (4.3.0-1) ...
+Selecting previously unselected package python3-certbot.
+Preparing to unpack .../18-python3-certbot_0.31.0-1+ubuntu19.04.1+certbot+1_all.deb ...
+Unpacking python3-certbot (0.31.0-1+ubuntu19.04.1+certbot+1) ...
+Selecting previously unselected package certbot.
+Preparing to unpack .../19-certbot_0.31.0-1+ubuntu19.04.1+certbot+1_all.deb ...
+Unpacking certbot (0.31.0-1+ubuntu19.04.1+certbot+1) ...
+Selecting previously unselected package python3-pyparsing.
+Preparing to unpack .../20-python3-pyparsing_2.2.0+dfsg1-2_all.deb ...
+Unpacking python3-pyparsing (2.2.0+dfsg1-2) ...
+Selecting previously unselected package python3-certbot-nginx.
+Preparing to unpack .../21-python3-certbot-nginx_0.31.0-1+ubuntu19.04.1+certbot+1_all.deb ...
+Unpacking python3-certbot-nginx (0.31.0-1+ubuntu19.04.1+certbot+1) ...
+Selecting previously unselected package python-certbot-nginx.
+Preparing to unpack .../22-python-certbot-nginx_0.31.0-1+ubuntu19.04.1+certbot+1_all.deb ...
+Unpacking python-certbot-nginx (0.31.0-1+ubuntu19.04.1+certbot+1) ...
+Selecting previously unselected package python-pyicu.
+Preparing to unpack .../23-python-pyicu_2.2-2_amd64.deb ...
+Unpacking python-pyicu (2.2-2) ...
+Setting up python3-configargparse (0.13.0-1) ...
+Setting up python3-requests-toolbelt (0.8.0-1) ...
+Setting up python3-zope.event (4.2.0-1) ...
+Setting up python3-ndg-httpsclient (0.5.1-1) ...
+Setting up python3-tz (2018.9-1) ...
+Setting up libpython2.7-stdlib:amd64 (2.7.16-2) ...
+Setting up python3-zope.hookable (4.0.4-4build6) ...
+Setting up python3-pyparsing (2.2.0+dfsg1-2) ...
+Setting up python3-josepy (1.1.0-2) ...
+Setting up python3-rfc3339 (1.1-1) ...
+Setting up python3-lib2to3 (3.7.3-1ubuntu1) ...
+Setting up python3-distutils (3.7.3-1ubuntu1) ...
+Setting up python3-setuptools (40.8.0-1) ...
+Setting up python2.7 (2.7.16-2) ...
+Setting up libpython2-stdlib:amd64 (2.7.16-1) ...
+Setting up python3-pbr (5.1.1-0ubuntu2) ...
+update-alternatives: using /usr/bin/python3-pbr to provide /usr/bin/pbr (pbr) in auto mode
+Setting up python2 (2.7.16-1) ...
+Setting up python3-zope.component (4.3.0-1) ...
+Setting up python3-mock (2.0.0-4) ...
+Setting up libpython-stdlib:amd64 (2.7.16-1) ...
+Setting up python3-acme (0.31.0-1+ubuntu19.04.1+certbot+1) ...
+Setting up python3-future (0.16.0-1) ...
+update-alternatives: using /usr/bin/python3-futurize to provide /usr/bin/futurize (futurize) in auto mode
+update-alternatives: using /usr/bin/python3-pasteurize to provide /usr/bin/pasteurize (pasteurize) in auto mode
+Setting up python (2.7.16-1) ...
+Setting up python3-parsedatetime (2.4-2) ...
+Setting up python-pyicu (2.2-2) ...
+Setting up python3-certbot (0.31.0-1+ubuntu19.04.1+certbot+1) ...
+Setting up certbot (0.31.0-1+ubuntu19.04.1+certbot+1) ...
+Created symlink /etc/systemd/system/timers.target.wants/certbot.timer → /lib/systemd/system/certbot.timer.
+certbot.service is a disabled or a static unit, not starting it.
+Setting up python3-certbot-nginx (0.31.0-1+ubuntu19.04.1+certbot+1) ...
+Setting up python-certbot-nginx (0.31.0-1+ubuntu19.04.1+certbot+1) ...
+Processing triggers for mime-support (3.60ubuntu1) ...
+Processing triggers for man-db (2.8.5-2) ...
+######### Run certbot     ##############
+Bootstrapping dependencies for Debian-based OSes... (you can skip this with --no-bootstrap)
+Hit:1 http://repo.mysql.com/apt/ubuntu disco InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu disco InRelease
+Hit:3 http://security.ubuntu.com/ubuntu disco-security InRelease
+Hit:4 http://ppa.launchpad.net/certbot/certbot/ubuntu disco InRelease
+Hit:5 http://mirrors.digitalocean.com/ubuntu disco InRelease
+Hit:6 http://mirrors.digitalocean.com/ubuntu disco-updates InRelease
+Hit:7 http://mirrors.digitalocean.com/ubuntu disco-backports InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+ca-certificates is already the newest version (20190110).
+ca-certificates set to manually installed.
+python is already the newest version (2.7.16-1).
+python set to manually installed.
+The following additional packages will be installed:
+  binutils binutils-common binutils-x86-64-linux-gnu cpp cpp-8 gcc-8
+  gcc-8-base gcc-9-base libasan5 libatomic1 libbinutils libc-dev-bin libc6-dev
+  libcc1-0 libexpat1 libexpat1-dev libgcc-8-dev libgcc1 libgomp1 libisl19
+  libitm1 liblsan0 libmpc3 libmpx2 libpython-dev libpython2-dev libpython2.7
+  libpython2.7-dev libquadmath0 libssl1.1 libstdc++6 libtsan0 libubsan1
+  linux-libc-dev python-pip-whl python-pkg-resources python2-dev python2.7-dev
+  python3-virtualenv
+Suggested packages:
+  augeas-doc binutils-doc cpp-doc gcc-8-locales gcc-multilib make manpages-dev
+  autoconf automake libtool flex bison gdb gcc-doc gcc-8-multilib gcc-8-doc
+  libgcc1-dbg libgomp1-dbg libitm1-dbg libatomic1-dbg libasan5-dbg
+  liblsan0-dbg libtsan0-dbg libubsan1-dbg libmpx2-dbg libquadmath0-dbg
+  augeas-tools glibc-doc libssl-doc python-setuptools
+Recommended packages:
+  manpages-dev
+The following NEW packages will be installed:
+  augeas-lenses binutils binutils-common binutils-x86-64-linux-gnu cpp cpp-8
+  gcc gcc-8 gcc-8-base libasan5 libatomic1 libaugeas0 libbinutils libc-dev-bin
+  libc6-dev libcc1-0 libexpat1-dev libffi-dev libgcc-8-dev libgomp1 libisl19
+  libitm1 liblsan0 libmpc3 libmpx2 libpython-dev libpython2-dev libpython2.7
+  libpython2.7-dev libquadmath0 libssl-dev libtsan0 libubsan1 linux-libc-dev
+  python-dev python-pip-whl python-pkg-resources python-virtualenv python2-dev
+  python2.7-dev python3-virtualenv virtualenv
+The following packages will be upgraded:
+  gcc-9-base libexpat1 libgcc1 libssl1.1 libstdc++6 openssl
+6 upgraded, 42 newly installed, 0 to remove and 83 not upgraded.
+Need to get 68.8 MB of archives.
+After this operation, 191 MB of additional disk space will be used.
+Do you want to continue? [Y/n] 
